@@ -102,9 +102,9 @@ export const portfolioData = {
               duration: "6 Months (2023)",
               status: "Live",
               videos: [
-                { id: "v1", url: "https://res.cloudinary.com/demo/video/upload/dog.mp4", thumbnail: "/projects/aireelgen.png", title: "Dashboard Overview & Navigation" },
-                { id: "v2", url: "https://res.cloudinary.com/demo/video/upload/elephants.mp4", thumbnail: "/projects/medpredict.png", title: "Real-time Data Filtering" },
-                { id: "v3", url: "https://res.cloudinary.com/demo/video/upload/dog.mp4", thumbnail: "/projects/engagement-wall.png", title: "Custom Widget Creation" }
+                { id: "v1", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783709253/day2_d8gotg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day2-thumbnail_dmybnk.png", title: "Dashboard Overview & Navigation" },
+                { id: "v2", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783709284/day3_yn5duh.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day3-thumbnail_j3emkw.jpg", title: "Real-time Data Filtering" },
+                { id: "v3", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710637/day4_qvt3iv.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713985/day4-thumbnail_mi5mfk.png", title: "Custom Widget Creation" }
               ],
               challenge: {
                 text: "Existing tools were either too slow to handle real-time bursts or too complex for non-technical stakeholders. The client needed a platform that married 'impossible' speed with 'beautiful' simplicity.",
