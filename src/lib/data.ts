@@ -88,98 +88,173 @@ export const portfolioData = {
                     categories: ["All", "Tutorials", "Debugging", "Tech Notes", "Career"]
           },
           projects: [
-            {
-              id: "nexus-analytics", // URL friendly ID
-              title: "Nexus Analytics Engine",
-              description: "Real-time data processing platform featuring predictive modeling and high-fidelity visualization clusters for enterprise telemetry.",
-              imageUrl: "/projects/aireelgen.png",
-              techStack: ["Next.js", "Prisma", "Tailwind", "PostgreSQL"],
-              category: "Full-Stack",
-              liveUrl: "#",
-              githubUrl: "#",
-              overview: "Nexus was built to solve the fragmentation in enterprise data monitoring. By consolidating telemetry from distributed systems into a single, high-performance visualization layer, we enabled engineering teams to identify bottlenecks 40% faster. The system handles over 100k events per second with sub-100ms latency.",
-              role: "Lead Fullstack Engineer",
-              duration: "6 Months (2023)",
-              status: "Live",
-              videos: [
-  { id: "v1", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783709253/day2_d8gotg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day2-thumbnail_dmybnk.png", title: "Monorepo Architecture — 4 Services, 1 Product" },
-  { id: "v2", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783709284/day3_yn5duh.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day3-thumbnail_j3emkw.jpg", title: "Hook Generation + ML Scoring" },
-  { id: "v3", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710637/day4_qvt3iv.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713985/day4-thumbnail_mi5mfk.png", title: "5-Scene Script Generation" },
-  { id: "v4", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710601/day5_m549td.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713985/day5-thumbnail_ll8gom.png", title: "Per-Scene Image + Audio Generation" },
-  { id: "v5", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710577/day6_x6vmh9.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713983/day6-thumbnail_qksqds.jpg", title: "Audio Normalization + Image-to-Video" },
-  { id: "v6", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710611/day7_ulbozz.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day7-thumbnail_ezlzhr.jpg", title: "FFmpeg Final Composition" },
-  { id: "v7", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710642/day8_rpp0vj.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713984/day8-thumbnail_h3x80h.jpg", title: "BullMQ Background Job Processing" },
-  { id: "v8", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713259/day9_wzxrjv.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713984/day9-thumbnail_mcuydz.jpg", title: "Socket.IO Real-time Pipeline Updates" },
-  { id: "v9", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713308/day10_lkwrue.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713988/day10-thumbnail_jipovk.png", title: "Credit & Billing System — Stripe" },
-  { id: "v10", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713275/day11_aasnxq.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713996/day11-thumbnail_nkmspc.png", title: "Live Demo Part 1 — Prompt to Hook" },
-  { id: "v11", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713311/day12_zwe0hq.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713989/day12-thumbnail_ehsmoo.jpg", title: "Live Demo Part 2 — Script to Assets" },
-  { id: "v12", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713292/day13_fowsrq.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713988/day13-thumbnail_ytvgxc.jpg", title: "Live Demo Part 3 — Video to Final Reel" },
-  { id: "v13", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713813/day14_ohfbfg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713991/day14-thumbnail_gcpcic.png", title: "Client Pipeline — Full Recap" },
-  { id: "v14", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713294/day15_itw8do.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713998/day15-thumbnail_olejk2.png", title: "Admin Panel — Secure Login & Overview" },
-  { id: "v15", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713270/day16_weoj7h.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783714004/day16-thumbnail_pgi0re.png", title: "Admin — Niche Management" },
-  { id: "v16", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713239/day17_ocg9xg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713994/day17-thumbnail_flmvvo.png", title: "Admin — AI Pricing & Credit Packages" },
-  { id: "v17", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783712752/day18_rgb03h.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783714002/day18-thumbnail_qip5fe.png", title: "Admin — Dashboard Overview & Audit Logs" },
-  { id: "v18", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713258/day19_jum8zw.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783714001/day19-thumbnail_z4gpcj.png", title: "Admin — User Directory & System Config" },
-  { id: "v19", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713847/day20_kbdt3r.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713999/day20-thumbnail_qtxau5.png", title: "Admin Panel — Full Walkthrough Recap" },
-],
-              challenge: {
-                text: "Existing tools were either too slow to handle real-time bursts or too complex for non-technical stakeholders. The client needed a platform that married 'impossible' speed with 'beautiful' simplicity.",
-                points: [
-                  "Reducing rendering overhead for large datasets.",
-                  "Implementing a secure yet flexible multi-tenant RBAC."
-                ],
-                image: "/projects/aireelgen.png"
-              },
-              approach: [
-                { step: "01", title: "Research & Discovery", desc: "Audited 15+ competitor platforms and interviewed 20 power users to identify friction points in data exploration workflows." },
-                { step: "02", title: "Architecture Design", desc: "Designed a serverless-first backend using Next.js Edge functions and Redis for ultra-low latency caching of global dashboards." },
-                { step: "03", title: "Implementation", desc: "Iterative sprints focusing on atomic component development and rigorous automated stress testing with K6." },
-                { step: "04", title: "Implementation", desc: "Iterative sprints focusing on atomic component development and rigorous automated stress testing with K6." },
-                { step: "05", title: "Research & Discovery", desc: "Audited 15+ competitor platforms and interviewed 20 power users to identify friction points in data exploration workflows." },
-                { step: "06", title: "Architecture Design", desc: "Designed a serverless-first backend using Next.js Edge functions and Redis for ultra-low latency caching of global dashboards." },
-                { step: "07", title: "Implementation", desc: "Iterative sprints focusing on atomic component development and rigorous automated stress testing with K6." },
-                { step: "08", title: "Implementation", desc: "Iterative sprints focusing on atomic component development and rigorous automated stress testing with K6." }
-              ],
-              features: [
-                { icon: "query_stats", title: "Real-time Telemetry", desc: "Stream data directly to the client using WebSockets with zero flickering or layout shifts during updates." },
-                { icon: "psychology", title: "Predictive Modeling", desc: "Integrated AI forecasting using TensorFlow.js to predict traffic spikes and system failures before they happen." },
-                { icon: "dashboard_customize", title: "Interactive Dashboards", desc: "Drag-and-drop interface for creating custom data views tailored to specific engineering team requirements." },
-                { icon: "security", title: "Enterprise Security", desc: "End-to-end encryption with granular role-based access control for compliance." } // 4th feature to test scroll/view more
-              ],
-              results: [
-                { value: "40%", label: "Faster Load Time" },
-                { value: "5k+", label: "Active Users" },
-                { value: "99.9%", label: "Uptime" }
-              ],
-              nextProjectId: "pulse-mobile",
-              resultsDesc: "The results of this project highlighted a significant improvement in efficiency and user experience.",
-              upcomingUpdate: {
-                title: "v2.0 Beta Release",
-                description: "Is update mein hum AI integration aur naye features introduce kar rahay hain..."
-              },
-              architecture: [
-                {
-                  title: "Level 1: Data Flow Diagram (DFD)",
-                  description: "This diagram illustrates the primary data flow from the user client through the API gateway and into our core processing services.",
-                  image: "/digrams/Data-Flow Diagram-DFD-(Level-1).png",
-                  points: [
-                    "User requests are authenticated and validated at the API Gateway.",
-                    "Payloads are pushed to a Redis Queue for asynchronous processing.",
-                    "Final rendered assets are securely stored in the Cloudinary Vault."
-                  ]
-                },
-                {
-                  title: "AI Asset Synthesis Pipeline",
-                  description: "A detailed look at how the AI agents generate and compose metadata before video rendering.",
-                  image: "/digrams/Ai-pipeline (1).png",
-                  points: [
-                    "External AI Services generate initial text and image assets.",
-                    "FFmpeg composition engine stitches assets chronologically.",
-                    "State closure updates MongoDB ledger upon completion."
-                  ]
-                }
-              ]
-            },
+           {
+  id: "reelmind",
+  title: "ReelMind",
+  description: "AI-powered SaaS platform that converts a single text prompt into a fully composed, captioned short-form video reel — end-to-end automated across a 4-service microservices architecture.",
+  imageUrl: "https://res.cloudinary.com/b7s4tc12/image/upload/v1784031378/frnt_pipyct.jpg",
+  techStack: ["Next.js", "Node.js", "TypeScript", "MongoDB", "Redis", "BullMQ", "Socket.IO", "FFmpeg", "TensorFlow.js", "Prisma", "Stripe", "Turborepo"],
+  category: "Full-Stack",
+  liveUrl: "https://reel-mind.netlify.app",
+  githubUrl: "https://github.com/Demo-Projects-Engr-Muhammad-Bilal/reelmind",
+  overview: "ReelMind was built to eliminate the manual effort behind short-form video content creation. A user submits a single topic, and the system autonomously generates viral hooks, selects the best one using a TensorFlow.js ML scoring model, writes a full 5-scene script, produces AI-generated images and voiceovers per scene, normalizes all audio to exact clip durations, animates images into video clips, and composes a final captioned reel using FFmpeg — all without a single manual step. The platform is built as a Turborepo-managed monorepo with 4 independently deployable microservices, a pay-as-you-go credit system powered by Stripe, real-time pipeline updates via Socket.IO, and a fully featured internal admin panel for platform governance.",
+  role: "Sole Full Stack Developer",
+  duration: "4 Months (2026)",
+  status: "Live",
+  videos: [
+    { id: "v1", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783709253/day2_d8gotg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day2-thumbnail_dmybnk.png", title: "Monorepo Architecture — 4 Services, 1 Product" },
+    { id: "v2", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783709284/day3_yn5duh.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day3-thumbnail_j3emkw.jpg", title: "Hook Generation + ML Scoring" },
+    { id: "v3", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710637/day4_qvt3iv.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713985/day4-thumbnail_mi5mfk.png", title: "5-Scene Script Generation" },
+    { id: "v4", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710601/day5_m549td.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713985/day5-thumbnail_ll8gom.png", title: "Per-Scene Image + Audio Generation" },
+    { id: "v5", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710577/day6_x6vmh9.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713983/day6-thumbnail_qksqds.jpg", title: "Audio Normalization + Image-to-Video" },
+    { id: "v6", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710611/day7_ulbozz.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713982/day7-thumbnail_ezlzhr.jpg", title: "FFmpeg Final Composition" },
+    { id: "v7", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783710642/day8_rpp0vj.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713984/day9-thumbnail_mcuydz.jpg", title: "BullMQ Background Job Processing" },
+    { id: "v8", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713259/day9_wzxrjv.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713984/day9-thumbnail_mcuydz.jpg", title: "Socket.IO Real-time Pipeline Updates" },
+    { id: "v9", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713308/day10_lkwrue.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713988/day10-thumbnail_jipovk.png", title: "Credit & Billing System — Stripe" },
+    { id: "v10", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713275/day11_aasnxq.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713996/day11-thumbnail_nkmspc.png", title: "Live Demo Part 1 — Prompt to Hook" },
+    { id: "v11", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713311/day12_zwe0hq.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713989/day12-thumbnail_ehsmoo.jpg", title: "Live Demo Part 2 — Script to Assets" },
+    { id: "v12", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713292/day13_fowsrq.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713988/day13-thumbnail_ytvgxc.jpg", title: "Live Demo Part 3 — Video to Final Reel" },
+    { id: "v13", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713813/day14_ohfbfg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713991/day14-thumbnail_gcpcic.png", title: "Client Pipeline — Full Recap" },
+    { id: "v14", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713294/day15_itw8do.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713998/day15-thumbnail_olejk2.png", title: "Admin Panel — Secure Login & Overview" },
+    { id: "v15", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713270/day16_weoj7h.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783714004/day16-thumbnail_pgi0re.png", title: "Admin — Niche Management" },
+    { id: "v16", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713239/day17_ocg9xg.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713994/day17-thumbnail_flmvvo.png", title: "Admin — AI Pricing & Credit Packages" },
+    { id: "v17", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783712752/day18_rgb03h.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783714002/day18-thumbnail_qip5fe.png", title: "Admin — Dashboard Overview & Audit Logs" },
+    { id: "v18", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713258/day19_jum8zw.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783714001/day19-thumbnail_z4gpcj.png", title: "Admin — User Directory & System Config" },
+    { id: "v19", url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1783713847/day20_kbdt3r.mp4", thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1783713999/day20-thumbnail_qtxau5.png", title: "Admin Panel — Full Walkthrough Recap" },
+  ],
+  challenge: {
+    text: "Short-form video content creation is time-consuming, repetitive, and requires multiple specialized tools — script writing, voiceover recording, visual sourcing, video editing, and caption generation. No single platform automated the entire pipeline end-to-end with intelligent content selection. The core engineering challenge was building a production-grade AI orchestration system that could coordinate multiple external AI providers, process heavy FFmpeg workloads asynchronously, handle provider failures gracefully, and deliver real-time progress to the user — all while maintaining a reliable, transactional billing system.",
+    points: [
+      "Coordinating 4 independent AI providers (Gemini, Veo, ElevenLabs, Google TTS) with graceful fallback chains — if a primary provider fails, the pipeline continues without breaking.",
+      "Running CPU-intensive FFmpeg composition on a serverless-adjacent deployment (Render free tier) without hitting memory limits or timeout crashes mid-generation.",
+      "Building a credit system with true ACID guarantees — every charge must be atomic across credit deduction, usage logging, and reel cost tracking.",
+      "Delivering real-time pipeline stage updates to the client without polling — persistent WebSocket rooms per reel via Socket.IO."
+    ],
+    image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1784031137/WhatsApp_Image_2026-07-14_at_5.11.54_PM_hqxibk.jpg"
+  },
+  approach: [
+    {
+      step: "01",
+      title: "Architecture Design",
+      desc: "Designed a Turborepo-managed monorepo separating the platform into 4 independently deployable services — Client App, Auth Service, AI Generation Engine, and Admin Panel — each scaling on its own infrastructure."
+    },
+    {
+      step: "02",
+      title: "AI Pipeline Engineering",
+      desc: "Built an 8-stage generation pipeline: Prompt → Hook Generation (Gemini) → ML Scoring (TensorFlow.js) → Script Generation → Per-Scene Asset Generation → Audio Normalization → Image-to-Video → FFmpeg Composition + Caption Burn-in."
+    },
+    {
+      step: "03",
+      title: "Async Job Architecture",
+      desc: "Implemented BullMQ with Redis for all generation work — API returns 202 immediately, background worker processes the full pipeline with 3 auto-retries, exponential backoff, and user cancellation support at every stage."
+    },
+    {
+      step: "04",
+      title: "Real-time Communication",
+      desc: "Each reel generation gets a dedicated Socket.IO room. The background worker emits step_update events per stage — client receives live progress updates with zero polling and a persistent WebSocket connection."
+    },
+    {
+      step: "05",
+      title: "Billing & Credit System",
+      desc: "Built pay-as-you-go credit system using Stripe Checkout with server-side webhook verification. Every credit deduction runs inside prisma.$transaction() — ACID-guaranteed atomic operations across credit balance, usage log, and reel cost tracker."
+    },
+    {
+      step: "06",
+      title: "Admin Panel",
+      desc: "Built a completely separate Next.js admin application with 2FA login, real-time KPI dashboard, full niche AI behavior configuration, dynamic provider pricing, credit package management, reels observer, user directory, and forensic audit logs."
+    },
+    {
+      step: "07",
+      title: "Resilience & Fallbacks",
+      desc: "Every AI provider has a primary and fallback chain. Image generation falls back from Gemini → Imagen → niche-specific static fallback → global default. Audio falls back from ElevenLabs → Google TTS. Pipeline never halts on provider failure."
+    },
+    {
+      step: "08",
+      title: "Deployment & Infrastructure",
+      desc: "Client, Auth Service, and Admin Panel deployed on Netlify. AI Engine containerized with Docker (multi-stage build, FFmpeg baked in) and deployed on Render. Shared Prisma + MongoDB schema across all services via Turborepo packages."
+    }
+  ],
+  features: [
+    {
+      icon: "psychology",
+      title: "ML-Powered Hook Selection",
+      desc: "TensorFlow.js scoring model evaluates and ranks every AI-generated hook by engagement potential — the highest-scoring hook is automatically selected before script generation begins."
+    },
+    {
+      icon: "movie_creation",
+      title: "End-to-End AI Pipeline",
+      desc: "8-stage fully automated pipeline — from a single text prompt to a finished, captioned video reel — orchestrating Gemini, Veo, ElevenLabs, Google TTS, and FFmpeg without manual intervention."
+    },
+    {
+      icon: "bolt",
+      title: "Async Job Processing",
+      desc: "BullMQ + Redis background queue handles all generation work asynchronously. API returns instantly, worker processes with auto-retry and exponential backoff, user can cancel at any point."
+    },
+    {
+      icon: "sensors",
+      title: "Real-time Pipeline Monitor",
+      desc: "Socket.IO persistent WebSocket connection streams live stage updates to the client dashboard — no polling, each reel gets an isolated room, multiple concurrent users never interfere."
+    },
+    {
+      icon: "account_balance_wallet",
+      title: "Pay-as-you-go Billing",
+      desc: "Stripe-powered credit system with ACID transactions, server-side webhook verification, dynamic per-provider pricing configurable from admin panel, and forensic per-stage usage audit logs."
+    },
+    {
+      icon: "admin_panel_settings",
+      title: "Full Admin Governance",
+      desc: "Separate 2FA-protected admin panel for managing niches, AI behavior configuration, dynamic pricing, credit packages, user accounts, platform analytics, and complete usage audit trail."
+    }
+  ],
+  results: [
+    { value: "20", label: "Build-in-Public Videos" },
+    { value: "4", label: "Microservices" },
+    { value: "8", label: "Pipeline Stages" }
+  ],
+  resultsDesc: "ReelMind demonstrates a complete production-grade AI SaaS architecture — built solo from architecture design to live deployment across 4 independent services.",
+  nextProjectId: "markethub",
+  upcomingUpdate: {
+    title: "v2.0 — Multi-tenant SaaS",
+    description: "Planned: organization accounts, user-created niches, auto-publish to TikTok/Instagram/YouTube, A/B hook testing with real audience data, and mobile app via React Native."
+  },
+  architecture: [
+    {
+      title: "System Context Diagram — Level 0",
+      description: "High-level view of the AI Video Factory Ecosystem. The AI Reel Factory Service acts as a central black box receiving inputs from the User Client Frontend, coordinating with MongoDB for data persistence, Redis for job queue management, External AI APIs (Vertex/ElevenLabs) for generative assets, and Cloudinary Vault for final media storage and delivery. System environment variables inject credit thresholds and API constraints at startup.",
+      image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1784031224/System-Context-Diagram-_High-Level-Level-0_d1vy8p.png",
+      points: [
+        "User Client Frontend sends topic, nicheKey, userId, and videoType — receives Success Notification and final videoUrl.",
+        "MongoDB Cluster Database Store persists user accounts, financial ledger, reel state mapping, and auth data.",
+        "Redis Server Queue Store coordinates job tasks, concurrency metrics, and queue state persistence.",
+        "External AI APIs Vector (Vertex AI / ElevenLabs) receives prompts and script payloads — returns generative image and audio streams.",
+        "Cloudinary Vault Cloud Storage receives final rendered assets — provides CDN delivery URLs and storage metadata."
+      ]
+    },
+    {
+      title: "System Architecture — High Level Technical View",
+      description: "Detailed technical architecture showing the full request lifecycle from Client Interface through the API Gateway Layer (Express.js) to the Background Compute Node. Incoming requests hit the Main API Listener, route through nicheRoutes and generateRoutes, pass through the Pre-flight Credit Guard for security and validation, then enter the BullMQ/Redis Distributed Task Queue. The generationWorker Background Compute Node hosts a Modular Managers Matrix — AudioManager, ImageManager, VideoManager, and ComposerManager — all interfacing with the Billing Ledger Service and Cloudinary Media Vault, with final state persisted to Prisma/MongoDB.",
+      image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1784031224/System-Architecture-_High-Level-Technical-view_wo4x2u.png",
+      points: [
+        "Pre-flight Credit Guard validates user credit balance before any job is accepted — rejects with 402 Payment Required if insufficient.",
+        "BullMQ/Redis Distributed Task Queue decouples the API from processing — API returns 202 immediately, worker picks up the job asynchronously.",
+        "Modular Managers Matrix (AudioManager, ImageManager, VideoManager, ComposerManager) operate independently within the generationWorker — each handles its own provider orchestration and fallback logic.",
+        "Billing Ledger Service processes micro-transactions per stage inside ACID-guaranteed prisma.$transaction() blocks — every deduction is atomic.",
+        "Cloudinary Media Vault stores all intermediate and final media assets — final videoUrl is written back to MongoDB Reel Table on completion."
+      ]
+    },
+    {
+      title: "Data Flow Diagram — Level 1",
+      description: "Process-level data flow showing how a generation request moves through 4 core processes. Process 1.0 (Validate & Ingest Request) reads user credits from Prisma User DB, checks balance, and pushes job data (reelId, userId) to the Redis BullMQ Shard. Process 2.0 (AI Asset Synthesis) receives the system prompt, calls External AI Services (Vertex/ElevenLabs), and produces audio.mp3 and image.png assets with transaction forensic logs. Process 3.0 (FFmpeg Composition & Rendering) receives AI assets and metadata and produces FINAL.mp4 bytes. Process 4.0 (Finalization & State Closure) uploads video bytes to Cloudinary Vault, updates MongoDB Reel Table status to COMPLETED, and returns the videoUrl to the client.",
+      image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1784031222/Data-Flow_Diagram-DFD-_Level-1_ev7ztn.png",
+      points: [
+        "Process 1.0 rejects requests with 402 Payment Required if credit balance is insufficient before any AI call is made.",
+        "Process 2.0 logs transaction forensic data (cost/usage) to the MongoDB Ledger after each AI asset is generated — per-stage billing granularity.",
+        "Process 3.0 FFmpeg Composition receives both AI assets and metadata to compose the final video — audio normalization, caption burn-in, and scene merging happen here.",
+        "Process 4.0 writes the final videoUrl back to the MongoDB Reel Table and pushes a Success Notification to the User Client — closing the generation loop."
+      ]
+    }
+  ]
+}
           ],
           blog: {
                     featuredPost: {
