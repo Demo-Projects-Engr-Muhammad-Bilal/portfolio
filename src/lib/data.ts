@@ -388,7 +388,7 @@ export const portfolioData = {
     {
       title: "System Architecture & End-to-End Flow",
       description: "Comprehensive system architecture showing the interaction between the Client Layer (Next.js / Clerk Auth), Core Backend (Express API & Stripe Billing), Queue Management (BullMQ / Redis Shard), Worker Engines (Social API Workers & Puppeteer Stealth Engine), and Persistence Layer (Prisma / PostgreSQL). The diagram maps both outbound API publishing and inbound Telegram Webhook triggers.",
-      image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/system-architecture.png",
+      image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1786596881/system-architecture_rwxhre.png",
       points: [
         "Client Layer authenticates via Clerk Auth and dispatches video tasks to the Core Backend API Server.",
         "Workspace & Credit Validator checks subscription credit limits before enqueueing jobs into BullMQ Queue Manager.",
@@ -400,7 +400,7 @@ export const portfolioData = {
     {
       title: "Backend Architecture & Service Boundaries",
       description: "Detailed service-level diagram illustrating Express API routes (`/api/publish`, `/api/scheduled`, `/api/accounts`, `/api/billing`), Middleware Layer (Auth & Workspace Tenant context), Queue Services, and Provider Factory pattern instantiating platform publishers.",
-      image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/backend-architecture.png",
+      image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1786596881/backend-architecture_fmefqf.png",
       points: [
         "API Router passes incoming requests through Clerk Auth and Tenant Middleware to enforce workspace isolation.",
         "Publish Controller validates credit balance and dispatches payloads to BullMQ Queue Service.",
@@ -412,7 +412,7 @@ export const portfolioData = {
     {
       title: "Frontend Architecture & UI Data Flow",
       description: "Frontend architecture depicting Next.js 16 App Router pages (`/dashboard`, `/publish`, `/scheduled`, `/accounts`, `/metrics`), React Context Providers (WorkspaceContext, DataContext), and API Client Layer communication.",
-      image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/frontend-architecture.png",
+      image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1786596880/frontend-architecture_bitvfz.png",
       points: [
         "ClerkProvider wraps the application root for seamless session and identity management.",
         "WorkspaceContext maintains selected tenant workspace state and active upload credit balances across UI pages.",
