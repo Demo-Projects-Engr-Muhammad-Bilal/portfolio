@@ -256,176 +256,173 @@ export const portfolioData = {
       ]
     },
     {
-      id: "castbot",
-      title: "CastBot",
-      description: "Automated multi-platform social media video publisher and dispatch engine that distributes short-form vertical videos across YouTube Shorts, Meta Reels, TikTok, and Telegram with headless stealth automation and BullMQ isolated queues.",
-      imageUrl: "https://res.cloudinary.com/b7s4tc12/image/upload/v1785095021/thumb_khmpra.jpg",
-      techStack: [
-        "Next.js 16",
-        "Node.js",
-        "Express",
-        "TypeScript",
-        "Prisma",
-        "PostgreSQL",
-        "BullMQ",
-        "Redis",
-        "Puppeteer Stealth",
-        "Clerk",
-        "Stripe",
-        "Netlify",
-        "Azure App Service",
-        "Cloudinary",
-        "Tailwind CSS"
-      ],
-      category: "Full-Stack",
-      liveUrl: "https://castbot.netlify.app",
-      githubUrl: "https://github.com/Demo-Projects-Engr-Muhammad-Bilal/castbot",
-      overview: "CastBot was engineered to solve the operational friction of manual video distribution across multiple social media networks. Built as an enterprise-grade monorepo managed via npm workspaces, CastBot allows multi-tenant organizations ('Tenants') to connect social channels and dispatch vertical videos simultaneously. The platform features dual publishing workflows: a manual web dashboard dispatch and a reverse-flow 'Telegram Auto-Pilot' webhook pipeline that captures uploaded channel videos and automatically fans them out to other connected platforms. To handle anti-bot friction on non-REST platforms like TikTok, CastBot utilizes a headless stealth Puppeteer browser engine with cookie injection, decoupled from standard API publishers via dedicated BullMQ queues.",
-      role: "Sole Full Stack Developer",
-      duration: "3 Months (2026)",
-      status: "Live",
-      videos: [
-        {
-          id: "v1",
-          url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1785094518/final3_bfu0p5.mp4",
-          thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1785095021/thumb_khmpra.jpg",
-          title: "CastBot Full System Architecture & Production Walkthrough"
-        }
-      ],
-      challenge: {
-        text: "Publishing short-form video content across fragmented social networks requires dealing with inconsistent API protocols, strict rate limits, complex OAuth refresh tokens, and platforms without official video-upload REST endpoints (like TikTok). The core engineering challenge was building a resilient, asynchronous multi-tenant dispatch architecture capable of executing high-concurrency API calls alongside heavy, memory-intensive headless browser automation without system deadlocks or worker crashes.",
-        points: [
-          "Bypassing Cloudflare and bot detection mechanisms on TikTok Creator Center using headless Puppeteer with stealth plugins, cookie injection, and DOM-level draft editor controls.",
-          "Isolating fast REST API workers (YouTube, Meta, Telegram) from heavy browser automation workers to prevent memory starvation and queue blocking.",
-          "Maintaining an auditable ledger of all dispatch jobs (`PublishJob` and `PublishTask`) with atomic status tracking (PENDING, PROCESSING, COMPLETED, FAILED) per platform.",
-          "Securing sensitive OAuth tokens, Telegram bot keys, and TikTok session cookies at rest using AES-256-GCM encryption before database persistence."
-        ],
-        image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1785095021/thumb_khmpra.jpg"
-      },
-      approach: [
-        {
-          step: "01",
-          title: "Monorepo Architecture",
-          desc: "Structured the repository as an npm workspace monorepo with `apps/frontend` (Next.js 16 App Router), `apps/backend` (Express API & BullMQ Workers), and `@repo/database` (Shared Prisma schema)."
-        },
-        {
-          step: "02",
-          title: "Multi-Tenant Data Modeling",
-          desc: "Designed PostgreSQL schema with Prisma ORM establishing strong relational models for `Tenant`, `TenantMember` (OWNER, ADMIN, MEMBER roles), `SocialAccount`, `PublishJob`, and `PublishTask`."
-        },
-        {
-          step: "03",
-          title: "Isolated Queue Engine",
-          desc: "Configured BullMQ with Redis into two isolated queues: `publish-video-queue` for fast REST publishers and `publish-video-tiktok-queue` for memory-heavy Puppeteer stealth browser tasks."
-        },
-        {
-          step: "04",
-          title: "Social Publisher Factory",
-          desc: "Implemented the Factory Pattern (`publisher.factory.ts`) dynamically instantiating dedicated publisher services (`youtube`, `facebook`, `instagram`, `telegram`, `tiktok`) based on target platform."
-        },
-        {
-          step: "05",
-          title: "Puppeteer Stealth Automation",
-          desc: "Engineered `tiktok.publisher.ts` with stealth plugins, automated Chrome path resolution, session cookie parsing, DOM-level video file injection, and caption draft synchronization."
-        },
-        {
-          step: "06",
-          title: "Stripe Billing & Monetization",
-          desc: "Integrated Stripe Checkout and Billing Portal with multi-tier subscription plans (Free, Pro, Agency), automatically enforcing workspace upload credit limits via webhooks."
-        },
-        {
-          step: "07",
-          title: "Sequential Audit Ledger",
-          desc: "Maintained a strict step-by-step audit directory (`docs/Antigravity_Audit/`) logging system architecture setups, bug fixes, CORS refactoring, and Azure startup scripts."
-        },
-        {
-          step: "08",
-          title: "Cloud Infrastructure Deployment",
-          desc: "Deployed frontend on Netlify Edge, Express API and BullMQ worker service on Azure App Service (Linux container with Puppeteer/Chrome binaries), and PostgreSQL on Neon/Prisma Postgres."
-        }
-      ],
-      features: [
-        {
-          icon: "hub",
-          title: "Multi-Platform Dispatch",
-          desc: "Simultaneous video publishing to YouTube Shorts (OAuth2), Meta Reels (Facebook/Instagram v19 Graph API), Telegram Channels, and TikTok."
-        },
-        {
-          icon: "visibility_off",
-          title: "TikTok Stealth Automation",
-          desc: "Headless browser automation utilizing cookie injection and stealth plugins to publish directly to TikTok Web Creator Studio without REST API limitations."
-        },
-        {
-          icon: "alt_route",
-          title: "Dual Publishing Workflows",
-          desc: "Manual dispatch via Next.js web dashboard alongside 'Telegram Auto-Pilot' webhook listener that automatically republishes videos sent to a connected Telegram channel."
-        },
-        {
-          icon: "dynamic_feed",
-          title: "Isolated Queue Processing",
-          desc: "BullMQ + Redis backend queue decoupling heavy Puppeteer instances from light API requests with automatic exponential backoff and retry handling."
-        },
-        {
-          icon: "credit_card",
-          title: "Stripe Credit & Subscription System",
-          desc: "SaaS monetization with Free, Pro, and Agency tiers, automated credit limit deductions per dispatch, and live Stripe Checkout billing portal."
-        },
-        {
-          icon: "fact_check",
-          title: "Sequential Development Audit",
-          desc: "Complete traceability via structured markdown audit ledgers (`docs/Antigravity_Audit`) documenting code verification, zero-error compilation proof, and deployment commands."
-        }
-      ],
-      results: [
-        { value: "4+", label: "Platforms Automated" },
-        { value: "2", label: "Isolated BullMQ Queues" },
-        { value: "100%", label: "Traceable Audit History" }
-      ],
-      resultsDesc: "CastBot demonstrates an enterprise-grade automated video distribution engine, built solo with strict monorepo architecture, stealth browser automation, and production cloud deployment.",
-      nextProjectId: "stiletto",
-      upcomingUpdate: {
-        title: "v2.0 — Telegram Inbound Auto-Pilot",
-        description: "In Progress: Webhook listener intercepting videos uploaded directly inside a registered Telegram channel and automatically auto-publishing them across connected YouTube, Meta, and TikTok accounts in auto-pilot mode."
-      },
-      architecture: [
-        {
-          title: "System Architecture & End-to-End Flow",
-          description: "Comprehensive system architecture showing the interaction between the Client Layer (Next.js / Clerk Auth), Core Backend (Express API & Stripe Billing), Queue Management (BullMQ / Redis Shard), Worker Engines (Social API Workers & Puppeteer Stealth Engine), and Persistence Layer (Prisma / PostgreSQL). The diagram maps both outbound API publishing and inbound Telegram Webhook triggers.",
-          image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/system-architecture.png",
-          points: [
-            "Client Layer authenticates via Clerk Auth and dispatches video tasks to the Core Backend API Server.",
-            "Workspace & Credit Validator checks subscription credit limits before enqueueing jobs into BullMQ Queue Manager.",
-            "BullMQ splits jobs into Light Publish Queue (YouTube, Meta, Telegram) and TikTok Heavy Queue (Puppeteer Stealth Browser).",
-            "Worker Engines execute tasks in parallel, updating persistent status records in PostgreSQL via Prisma ORM.",
-            "Telegram Webhook Handler listens for incoming channel videos to trigger auto-publish workflows automatically."
-          ]
-        },
-        {
-          title: "Backend Architecture & Service Boundaries",
-          description: "Detailed service-level diagram illustrating Express API routes (`/api/publish`, `/api/scheduled`, `/api/accounts`, `/api/billing`), Middleware Layer (Auth & Workspace Tenant context), Queue Services, and Provider Factory pattern instantiating platform publishers.",
-          image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/backend-architecture.png",
-          points: [
-            "API Router passes incoming requests through Clerk Auth and Tenant Middleware to enforce workspace isolation.",
-            "Publish Controller validates credit balance and dispatches payloads to BullMQ Queue Service.",
-            "Publisher Factory (`publisher.factory.ts`) dynamically instantiates YouTube, Meta, Telegram, or TikTok service handlers.",
-            "TikTok Service executes Puppeteer stealth browser instances with session cookie injection and DOM interactions.",
-            "Prisma Database Client manages transactional persistence for Tenants, Users, Jobs, and Task status logs."
-          ]
-        },
-        {
-          title: "Frontend Architecture & UI Data Flow",
-          description: "Frontend architecture depicting Next.js 16 App Router pages (`/dashboard`, `/publish`, `/scheduled`, `/accounts`, `/metrics`), React Context Providers (WorkspaceContext, DataContext), and API Client Layer communication.",
-          image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/frontend-architecture.png",
-          points: [
-            "ClerkProvider wraps the application root for seamless session and identity management.",
-            "WorkspaceContext maintains selected tenant workspace state and active upload credit balances across UI pages.",
-            "VideoPublisherForm manages media file selection, metadata input, target platform toggles, and dispatch triggers.",
-            "InspectorModel and ScheduledPosts view fetch live worker execution logs and platform task badges (PENDING, PROCESSING, COMPLETED).",
-            "SocialAccountsGrid manages OAuth redirect generators and TikTok stealth cookie payload modal configurations."
-          ]
-        }
+  id: "castbot",
+  title: "CastBot",
+  description: "Automated multi-platform social media video publisher and dispatch engine that distributes short-form vertical videos across YouTube Shorts, Meta Reels, TikTok, and Telegram with headless stealth automation and BullMQ isolated queues.",
+  imageUrl: "https://res.cloudinary.com/b7s4tc12/image/upload/v1786595245/Gemini_Generated_Image_2huiq22huiq22hui_jv0np4.png",
+  techStack: [
+    "Next.js 16",
+    "PostgreSQL",
+    "BullMQ",
+    "Redis",
+    "Puppeteer Stealth",
+    "Clerk",
+    "Stripe",
+    "Netlify",
+    "Azure App Service",
+    "Cloudinary",
+    "Tailwind CSS"
+  ],
+  category: "Full-Stack",
+  liveUrl: "https://castbot.netlify.app",
+  githubUrl: "https://github.com/Demo-Projects-Engr-Muhammad-Bilal/castbot",
+  overview: "CastBot was engineered to solve the operational friction of manual video distribution across multiple social media networks. Built as an enterprise-grade monorepo managed via npm workspaces, CastBot allows multi-tenant organizations ('Tenants') to connect social channels and dispatch vertical videos simultaneously. The platform features dual publishing workflows: a manual web dashboard dispatch and a reverse-flow 'Telegram Auto-Pilot' webhook pipeline that captures uploaded channel videos and automatically fans them out to other connected platforms. To handle anti-bot friction on non-REST platforms like TikTok, CastBot utilizes a headless stealth Puppeteer browser engine with cookie injection, decoupled from standard API publishers via dedicated BullMQ queues.",
+  role: "Sole Full Stack Developer",
+  duration: "3 Months (2026)",
+  status: "Live",
+  videos: [
+    {
+      id: "v1",
+      url: "https://res.cloudinary.com/b7s4tc12/video/upload/v1785094518/final3_bfu0p5.mp4",
+      thumbnail: "https://res.cloudinary.com/b7s4tc12/image/upload/v1786595245/Gemini_Generated_Image_2huiq22huiq22hui_jv0np4.png",
+      title: "CastBot Full System Architecture & Production Walkthrough"
+    }
+  ],
+  challenge: {
+    text: "Publishing short-form video content across fragmented social networks requires dealing with inconsistent API protocols, strict rate limits, complex OAuth refresh tokens, and platforms without official video-upload REST endpoints (like TikTok). The core engineering challenge was building a resilient, asynchronous multi-tenant dispatch architecture capable of executing high-concurrency API calls alongside heavy, memory-intensive headless browser automation without system deadlocks or worker crashes.",
+    points: [
+      "Bypassing Cloudflare and bot detection mechanisms on TikTok Creator Center using headless Puppeteer with stealth plugins, cookie injection, and DOM-level draft editor controls.",
+      "Isolating fast REST API workers (YouTube, Meta, Telegram) from heavy browser automation workers to prevent memory starvation and queue blocking.",
+      "Maintaining an auditable ledger of all dispatch jobs (`PublishJob` and `PublishTask`) with atomic status tracking (PENDING, PROCESSING, COMPLETED, FAILED) per platform.",
+      "Securing sensitive OAuth tokens, Telegram bot keys, and TikTok session cookies at rest using AES-256-GCM encryption before database persistence."
+    ],
+    // 👇 Replace this image URL once you generate the new challenge image
+    image: "https://res.cloudinary.com/b7s4tc12/image/upload/v1786595245/Gemini_Generated_Image_2huiq22huiq22hui_jv0np4.png"
+  },
+  approach: [
+    {
+      step: "01",
+      title: "Monorepo Architecture",
+      desc: "Structured the repository as an npm workspace monorepo with `apps/frontend` (Next.js 16 App Router), `apps/backend` (Express API & BullMQ Workers), and `@repo/database` (Shared Prisma schema)."
+    },
+    {
+      step: "02",
+      title: "Multi-Tenant Data Modeling",
+      desc: "Designed PostgreSQL schema with Prisma ORM establishing strong relational models for `Tenant`, `TenantMember` (OWNER, ADMIN, MEMBER roles), `SocialAccount`, `PublishJob`, and `PublishTask`."
+    },
+    {
+      step: "03",
+      title: "Isolated Queue Engine",
+      desc: "Configured BullMQ with Redis into two isolated queues: `publish-video-queue` for fast REST publishers and `publish-video-tiktok-queue` for memory-heavy Puppeteer stealth browser tasks."
+    },
+    {
+      step: "04",
+      title: "Social Publisher Factory",
+      desc: "Implemented the Factory Pattern (`publisher.factory.ts`) dynamically instantiating dedicated publisher services (`youtube`, `facebook`, `instagram`, `telegram`, `tiktok`) based on target platform."
+    },
+    {
+      step: "05",
+      title: "Puppeteer Stealth Automation",
+      desc: "Engineered `tiktok.publisher.ts` with stealth plugins, automated Chrome path resolution, session cookie parsing, DOM-level video file injection, and caption draft synchronization."
+    },
+    {
+      step: "06",
+      title: "Stripe Billing & Monetization",
+      desc: "Integrated Stripe Checkout and Billing Portal with multi-tier subscription plans (Free, Pro, Agency), automatically enforcing workspace upload credit limits via webhooks."
+    },
+    {
+      step: "07",
+      title: "Sequential Audit Ledger",
+      desc: "Maintained a strict step-by-step audit directory (`docs/Antigravity_Audit/`) logging system architecture setups, bug fixes, CORS refactoring, and Azure startup scripts."
+    },
+    {
+      step: "08",
+      title: "Cloud Infrastructure Deployment",
+      desc: "Deployed frontend on Netlify Edge, Express API and BullMQ worker service on Azure App Service (Linux container with Puppeteer/Chrome binaries), and PostgreSQL on Neon/Prisma Postgres."
+    }
+  ],
+  features: [
+    {
+      icon: "hub",
+      title: "Multi-Platform Dispatch",
+      desc: "Simultaneous video publishing to YouTube Shorts (OAuth2), Meta Reels (Facebook/Instagram v19 Graph API), Telegram Channels, and TikTok."
+    },
+    {
+      icon: "visibility_off",
+      title: "TikTok Stealth Automation",
+      desc: "Headless browser automation utilizing cookie injection and stealth plugins to publish directly to TikTok Web Creator Studio without REST API limitations."
+    },
+    {
+      icon: "alt_route",
+      title: "Dual Publishing Workflows",
+      desc: "Manual dispatch via Next.js web dashboard alongside 'Telegram Auto-Pilot' webhook listener that automatically republishes videos sent to a connected Telegram channel."
+    },
+    {
+      icon: "dynamic_feed",
+      title: "Isolated Queue Processing",
+      desc: "BullMQ + Redis backend queue decoupling heavy Puppeteer instances from light API requests with automatic exponential backoff and retry handling."
+    },
+    {
+      icon: "credit_card",
+      title: "Stripe Credit & Subscription System",
+      desc: "SaaS monetization with Free, Pro, and Agency tiers, automated credit limit deductions per dispatch, and live Stripe Checkout billing portal."
+    },
+    {
+      icon: "fact_check",
+      title: "Sequential Development Audit",
+      desc: "Complete traceability via structured markdown audit ledgers (`docs/Antigravity_Audit`) documenting code verification, zero-error compilation proof, and deployment commands."
+    }
+  ],
+  results: [
+    { value: "4+", label: "Platforms Automated" },
+    { value: "2", label: "Isolated BullMQ Queues" },
+    { value: "100%", label: "Traceable Audit History" }
+  ],
+  resultsDesc: "CastBot demonstrates an enterprise-grade automated video distribution engine, built solo with strict monorepo architecture, stealth browser automation, and production cloud deployment.",
+  nextProjectId: "stiletto",
+  upcomingUpdate: {
+    title: "v2.0 — Telegram Inbound Auto-Pilot",
+    description: "In Progress: Webhook listener intercepting videos uploaded directly inside a registered Telegram channel and automatically auto-publishing them across connected YouTube, Meta, and TikTok accounts in auto-pilot mode."
+  },
+  architecture: [
+    {
+      title: "System Architecture & End-to-End Flow",
+      description: "Comprehensive system architecture showing the interaction between the Client Layer (Next.js / Clerk Auth), Core Backend (Express API & Stripe Billing), Queue Management (BullMQ / Redis Shard), Worker Engines (Social API Workers & Puppeteer Stealth Engine), and Persistence Layer (Prisma / PostgreSQL). The diagram maps both outbound API publishing and inbound Telegram Webhook triggers.",
+      image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/system-architecture.png",
+      points: [
+        "Client Layer authenticates via Clerk Auth and dispatches video tasks to the Core Backend API Server.",
+        "Workspace & Credit Validator checks subscription credit limits before enqueueing jobs into BullMQ Queue Manager.",
+        "BullMQ splits jobs into Light Publish Queue (YouTube, Meta, Telegram) and TikTok Heavy Queue (Puppeteer Stealth Browser).",
+        "Worker Engines execute tasks in parallel, updating persistent status records in PostgreSQL via Prisma ORM.",
+        "Telegram Webhook Handler listens for incoming channel videos to trigger auto-publish workflows automatically."
+      ]
+    },
+    {
+      title: "Backend Architecture & Service Boundaries",
+      description: "Detailed service-level diagram illustrating Express API routes (`/api/publish`, `/api/scheduled`, `/api/accounts`, `/api/billing`), Middleware Layer (Auth & Workspace Tenant context), Queue Services, and Provider Factory pattern instantiating platform publishers.",
+      image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/backend-architecture.png",
+      points: [
+        "API Router passes incoming requests through Clerk Auth and Tenant Middleware to enforce workspace isolation.",
+        "Publish Controller validates credit balance and dispatches payloads to BullMQ Queue Service.",
+        "Publisher Factory (`publisher.factory.ts`) dynamically instantiates YouTube, Meta, Telegram, or TikTok service handlers.",
+        "TikTok Service executes Puppeteer stealth browser instances with session cookie injection and DOM interactions.",
+        "Prisma Database Client manages transactional persistence for Tenants, Users, Jobs, and Task status logs."
+      ]
+    },
+    {
+      title: "Frontend Architecture & UI Data Flow",
+      description: "Frontend architecture depicting Next.js 16 App Router pages (`/dashboard`, `/publish`, `/scheduled`, `/accounts`, `/metrics`), React Context Providers (WorkspaceContext, DataContext), and API Client Layer communication.",
+      image: "https://raw.githubusercontent.com/Demo-Projects-Engr-Muhammad-Bilal/castbot/main/docs/diagrams/frontend-architecture.png",
+      points: [
+        "ClerkProvider wraps the application root for seamless session and identity management.",
+        "WorkspaceContext maintains selected tenant workspace state and active upload credit balances across UI pages.",
+        "VideoPublisherForm manages media file selection, metadata input, target platform toggles, and dispatch triggers.",
+        "InspectorModel and ScheduledPosts view fetch live worker execution logs and platform task badges (PENDING, PROCESSING, COMPLETED).",
+        "SocialAccountsGrid manages OAuth redirect generators and TikTok stealth cookie payload modal configurations."
       ]
     }
+  ]
+}
   ],
   blog: {
     featuredPost: {
