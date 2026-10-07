@@ -19,7 +19,7 @@ export default function BlogDetailPage() {
                     <>
                               <ReadingProgress />
 
-                              <main className="min-h-screen bg-surface text-on-background overflow-x-hidden">
+                              <main className="clay-page min-h-screen overflow-x-hidden">
 
                                         {/* ================= HERO SECTION ================= */}
                                         <BlogDetailHero data={data} />

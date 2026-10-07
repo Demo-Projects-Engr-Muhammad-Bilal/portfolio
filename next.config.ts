@@ -7,7 +7,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
         port: "",
-        pathname: "/**", // Unsplash ke tamam image paths ko allow karta hai
+        pathname: "/**",
+      },
+      {
+        // Blog posts use Unsplash images
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
       },
     ],
   },

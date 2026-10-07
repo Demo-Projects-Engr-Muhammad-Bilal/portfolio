@@ -35,15 +35,15 @@ const ThumbnailItem = ({
                               onMouseLeave={() => setIsHovered(false)}
                               // 📱 MOBILE: Card ki overall width w-[160px] kar di gayi hai (pehle 200px thi), p-2 for tighter padding
                               // 💻 DESKTOP: w-full aur padding p-3
-                              className={`group flex-shrink-0 w-[160px] md:w-full flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 p-2 md:p-3 h-auto rounded-[12px] md:rounded-[14px] justify-start cursor-pointer transition-all duration-300 border ${isActive
-                                        ? "bg-surface-container border-primary-container/30 shadow-[0_4px_12px_rgba(0,0,0,0.03)] hover:bg-surface-container"
-                                        : "bg-transparent border-transparent hover:bg-surface-container-low"
-                                        }`}
+                              className={`group flex-shrink-0 w-[160px] md:w-full flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4 p-2 md:p-3 h-auto rounded-[22px] justify-start cursor-pointer transition-all duration-300 ${isActive
+ ? "clay-inset hover:bg-transparent"
+ : "bg-transparent hover:bg-surface-container-low"
+ }`}
                     >
                               {/* Thumbnail Box */}
                               {/* 📱 MOBILE: Thumbnail container ki width w-full rakhi hai (card ke andar). 💻 DESKTOP: w-32 fixed. */}
-                              <div className={`relative flex-shrink-0 w-full md:w-32 aspect-video rounded-[6px] md:rounded-[10px] overflow-hidden shadow-sm transition-all duration-300 ${isActive ? "ring-1 md:ring-2 ring-primary-container shadow-[0_0_8px_rgba(255,107,53,0.2)]" : ""
-                                        }`}>
+                              <div className={`relative flex-shrink-0 w-full md:w-32 aspect-video rounded-[22px] overflow-hidden transition-all duration-300 ${isActive ? "ring-1 md:ring-2 ring-primary " : ""
+ }`}>
                                         <div className="absolute inset-0 bg-black/15 group-hover:bg-black/5 transition-colors z-10"></div>
 
                                         {/* Static Image */}
@@ -79,13 +79,13 @@ const ThumbnailItem = ({
                               {/* Details Box */}
                               <div className="flex flex-col flex-grow overflow-hidden text-left w-full pt-0.5 md:pt-0">
                                         {isActive && (
-                                                  <span className="text-[9px] md:text-[11px] uppercase tracking-widest font-bold text-primary-container mb-0.5 md:mb-1 leading-none">
+                                                  <span className="text-[9px] md:text-[11px] uppercase tracking-widest font-bold text-primary mb-0.5 md:mb-1 leading-none">
                                                             Playing
                                                   </span>
                                         )}
                                         {/* 📱 MOBILE: Text chota kar diya hai (text-[11px]) */}
                                         <h3 className={`font-bold text-[11px] md:text-[14px] leading-snug line-clamp-2 transition-colors whitespace-normal ${isActive ? "text-on-surface" : "text-secondary group-hover:text-primary"
-                                                  }`}>
+ }`}>
                                                   {vid.title}
                                         </h3>
                                         {/* 📱 MOBILE: Muted text mazeed chota (text-[10px]) */}
@@ -227,9 +227,10 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
 
                                         {/* ================= LEFT COLUMN: CUSTOM VIDEO PLAYER ================= */}
                                         <div className="flex flex-col gap-4 md:gap-6 w-full">
-                                                  <div
+                                                  <div className="clay-lg p-2 md:p-3">
+<div
                                                             ref={containerRef}
-                                                            className="relative w-full aspect-[4/3] md:aspect-video bg-black rounded-[20px] md:rounded-[24px] overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.15)] border border-surface-variant/50 group flex items-center justify-center cursor-pointer"
+                                                            className="relative w-full aspect-[4/3] md:aspect-video bg-black rounded-[28px] overflow-hidden group flex items-center justify-center cursor-pointer"
                                                             onClick={handleContainerClick}
                                                             onMouseLeave={() => isPlaying && setShowControls(false)}
                                                             onMouseEnter={() => setShowControls(true)}
@@ -257,8 +258,8 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                                       <Button
                                                                                 size="icon"
                                                                                 onClick={togglePlay}
-                                                                                className={`pointer-events-auto rounded-full w-16 h-16 md:w-20 md:h-20 bg-primary-container text-white shadow-[0_0_25px_rgba(255,107,53,0.5)] hover:bg-primary-container/90 hover:scale-110 transition-all duration-300 ${isPlaying ? 'scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100' : 'scale-100 opacity-100'
-                                                                                          }`}
+                                                                                className={`pointer-events-auto rounded-full size-16 md:size-20 transition-all duration-300 ${isPlaying ? 'scale-90 opacity-0 group-hover:opacity-100 group-hover:scale-100' : 'scale-100 opacity-100'
+ }`}
                                                                       >
                                                                                 {isPlaying ? <Pause className="w-8 h-8 fill-current" /> : <Play className="w-8 h-8 fill-current ml-1" />}
                                                                       </Button>
@@ -268,7 +269,7 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                             {/* YAHAN CHANGE HAI: lg:group-hover:opacity-100 desktop k liye rakha hai, aur mobile k liye 'showControls' state use ki hai */}
                                                             <div
                                                                       className={`absolute bottom-0 left-0 right-0 px-4 md:px-6 pb-4 pt-12 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex flex-col gap-3 z-20 transition-opacity duration-300 ${showControls || !isPlaying ? 'opacity-100' : 'opacity-0 lg:group-hover:opacity-100'
-                                                                                }`}
+ }`}
                                                                       onClick={(e) => e.stopPropagation()}
                                                             >
                                                                       {/* Progress Bar */}
@@ -277,7 +278,7 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                                                 onClick={handleProgressClick}
                                                                       >
                                                                                 <div
-                                                                                          className="absolute top-0 left-0 h-full bg-primary-container transition-all duration-100"
+                                                                                          className="absolute top-0 left-0 h-full bg-[var(--accent-fill)] transition-all duration-100"
                                                                                           style={{ width: `${progress}%` }}
                                                                                 ></div>
                                                                       </div>
@@ -285,13 +286,13 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                                       {/* Controls Row */}
                                                                       <div className="flex items-center justify-between text-white">
                                                                                 <div className="flex items-center gap-1 md:gap-2">
-                                                                                          <Button variant="ghost" size="icon" onClick={togglePlay} className="text-white hover:text-primary-container hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer">
+                                                                                          <Button variant="ghost" size="icon" onClick={togglePlay} className="text-white hover:text-[var(--accent-fill)] hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer">
                                                                                                     {isPlaying ? <Pause size={18} className="fill-current" /> : <Play size={18} className="fill-current" />}
                                                                                           </Button>
-                                                                                          <Button variant="ghost" size="icon" onClick={() => skipTime(-10)} className="text-white hover:text-primary-container hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer" title="Rewind 10s">
+                                                                                          <Button variant="ghost" size="icon" onClick={() => skipTime(-10)} className="text-white hover:text-[var(--accent-fill)] hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer" title="Rewind 10s">
                                                                                                     <RotateCcw size={16} />
                                                                                           </Button>
-                                                                                          <Button variant="ghost" size="icon" onClick={() => skipTime(10)} className="text-white hover:text-primary-container hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer" title="Forward 10s">
+                                                                                          <Button variant="ghost" size="icon" onClick={() => skipTime(10)} className="text-white hover:text-[var(--accent-fill)] hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer" title="Forward 10s">
                                                                                                     <RotateCw size={16} />
                                                                                           </Button>
                                                                                           <span className="text-[12px] md:text-[13px] font-medium font-body-md opacity-90 tracking-wide ml-2">
@@ -301,7 +302,7 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
 
                                                                                 <div className="flex items-center gap-1 md:gap-2">
                                                                                           <div className="flex items-center group/vol">
-                                                                                                    <Button variant="ghost" size="icon" onClick={toggleMute} className="text-white hover:text-primary-container hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer">
+                                                                                                    <Button variant="ghost" size="icon" onClick={toggleMute} className="text-white hover:text-[var(--accent-fill)] hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer">
                                                                                                               {isMuted || volume === 0 ? <VolumeX size={16} /> : <Volume2 size={16} />}
                                                                                                     </Button>
                                                                                                     <input
@@ -309,10 +310,10 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                                                                               min="0" max="1" step="0.05"
                                                                                                               value={isMuted ? 0 : volume}
                                                                                                               onChange={handleVolumeChange}
-                                                                                                              className="hidden md:block w-0 opacity-0 group-hover/vol:w-16 md:group-hover/vol:w-20 group-hover/vol:opacity-100 transition-all duration-300 accent-primary-container h-1 cursor-pointer"
+                                                                                                              className="hidden md:block w-0 opacity-0 group-hover/vol:w-16 md:group-hover/vol:w-20 group-hover/vol:opacity-100 transition-all duration-300 accent-[var(--accent-fill)] h-1 cursor-pointer"
                                                                                                     />
                                                                                           </div>
-                                                                                          <Button variant="ghost" size="icon" onClick={toggleFullScreen} className="text-white hover:text-primary-container hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer">
+                                                                                          <Button variant="ghost" size="icon" onClick={toggleFullScreen} className="text-white hover:text-[var(--accent-fill)] hover:bg-white/10 rounded-full h-8 w-8 cursor-pointer">
                                                                                                     <Maximize size={16} />
                                                                                           </Button>
                                                                                 </div>
@@ -320,9 +321,11 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                             </div>
                                                   </div>
 
-                                                  {/* Video Title Container */}
-                                                  <div className="bg-surface p-5 md:p-6 rounded-[16px] md:rounded-[20px] border border-surface-container-high shadow-sm">
-                                                            <h1 className="text-primary font-headline-md font-extrabold text-[20px] md:text-[26px] leading-tight text-shadow-md">
+                                                  </div>
+
+{/* Video Title Container */}
+                                                  <div className="clay rounded-[28px] p-5 md:p-6">
+                                                            <h1 className="font-display text-primary font-semibold text-[20px] md:text-[26px] leading-tight">
                                                                       {activeVideo.title}
                                                             </h1>
                                                             <p className="text-secondary font-body-md text-[13px] md:text-[15px] mt-2">
@@ -337,10 +340,10 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                   <div className="relative h-full w-full">
                                                             {/* 📱 MOBILE: flex-row overflow-x-auto (Horizontal Scroll) */}
                                                             {/* 💻 DESKTOP: flex-col overflow-y-auto (Vertical List) */}
-                                                            <div className="lg:absolute lg:inset-0 w-full h-full flex flex-row lg:flex-col gap-3 md:gap-2 overflow-x-auto lg:overflow-y-auto pb-4 lg:pr-2 custom-scrollbar border shadow-md rounded-[16px] p-3">
+                                                            <div className="lg:absolute lg:inset-0 w-full h-full flex flex-row lg:flex-col gap-3 md:gap-2 overflow-x-auto lg:overflow-y-auto pb-4 lg:pr-2 custom-scrollbar clay rounded-[32px] p-4">
 
                                                                       <div className="hidden lg:flex items-center justify-between mb-2">
-                                                                                <h2 className="text-secondary font-label-md font-extrabold uppercase tracking-widest text-[12px] md:text-[13px] px-1">
+                                                                                <h2 className="text-secondary font-label-md font-semibold uppercase tracking-widest text-[12px] md:text-[13px] px-1">
                                                                                           Playlist ({videos.length})
                                                                                 </h2>
                                                                       </div>
@@ -354,7 +357,7 @@ export default function ProjectVideoGallery({ videos }: { videos: ProjectVideo[]
                                                                                           />
                                                                                           {/* Playlist Separator (Desktop only) */}
                                                                                           {index < videos.length - 1 && (
-                                                                                                    <hr className="hidden lg:block border-surface-variant/50 w-full my-1" />
+                                                                                                    <div className="clay-inset my-1 hidden h-1.5 w-full rounded-full lg:block" aria-hidden="true" />
                                                                                           )}
                                                                                 </div>
                                                                       ))}

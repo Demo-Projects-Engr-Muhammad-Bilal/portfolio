@@ -1,80 +1,89 @@
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import { CheckCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import SectionHeader from "@/components/generic/SectionHeader";
+import Magnetic from "@/components/shared/Magnetic";
+import Tilt from "@/components/shared/Tilt";
+import { buttonVariants } from "@/components/ui/button";
+
+const features = [
+  "Fast-paced delivery with high precision",
+  "Excellent communication and team collaboration",
+  "Always up-to-date with latest React & Next.js standards",
+];
+
+const stats = [
+  { value: "50+", label: "Projects done" },
+  { value: "12+", label: "Tech stack" },
+];
 
 export default function AboutSection() {
-          return (
-                    // Mobile py-16, Desktop py-section-gap
-                    <section className="bg-[#f5f3f3] py-16 md:py-[var(--spacing-section-gap)]" id="about">
-                              {/* Mobile gap-10, Desktop gap-16 */}
-                              <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
+  return (
+    <section className="relative overflow-hidden py-16 md:py-[var(--spacing-section-gap)]" id="about">
+      <span aria-hidden="true" className="clay-blob clay-float pointer-events-none absolute -left-16 top-24 hidden size-40 rounded-full opacity-60 md:block" style={{ ["--c" as string]: "var(--tint-sky)", animationDuration: "10s" }} />
+      <div className="relative mx-auto grid max-w-[var(--spacing-container-max)] grid-cols-1 items-center gap-12 px-[var(--spacing-margin-mobile)] md:grid-cols-2 md:gap-16 md:px-[var(--spacing-margin-desktop)]">
+        {/* Left: framed image + stat pillows */}
+        <div>
+          <Tilt className="rounded-[44px]">
+            <div className="clay-lg p-3">
+              <div className="group relative h-[300px] overflow-hidden rounded-[34px] bg-[var(--clay-inset-bg)] shadow-[inset_5px_5px_12px_var(--clay-inner-dark)] md:h-[420px]">
+                <Image
+                  src="/workspace.png"
+                  alt="Developer workspace"
+                  fill
+                  className="object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+                />
+              </div>
+            </div>
+          </Tilt>
+          <div className="mt-8 grid grid-cols-2 gap-5 md:gap-8">
+            {stats.map((s, i) => (
+              <div key={s.label} className="clay clay-hover rounded-[32px] px-5 py-5 md:px-7 md:py-6">
+                <span
+                  aria-hidden="true"
+                  className="clay-blob mb-3 block size-3.5 rounded-full"
+                  style={{ ["--c" as string]: i === 0 ? "var(--accent-fill)" : "var(--tint-peach)" }}
+                />
+                <p className="font-display text-[32px] font-semibold leading-none text-on-surface md:text-[44px]">
+                  {s.value}
+                </p>
+                <p className="mt-2 text-[13px] font-semibold text-secondary">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </div>
 
-                                        {/* Left Column: Image Card with Stats */}
-                                        {/* Mobile height 350px, Desktop 500px */}
-                                        <div className="rounded-[var(--radius-card)] overflow-hidden h-[350px] md:h-[500px] shadow-2xl relative bg-inverse-surface group">
-                                                  <Image
-                                                            src="/workspace.png"
-                                                            alt="Developer workspace"
-                                                            fill
-                                                            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                                                  />
+        {/* Right: text */}
+        <div>
+          <SectionHeader
+            label="About me"
+            title={
+              <>
+                Why hire me for your next <span className="text-primary">project?</span>
+              </>
+            }
+            description="I don't just write code; I build business solutions. My focus is on creating scalable, performant architectures that grow with your user base using DRY principles and optimal HCI strategies."
+            align="left"
+            showDivider={false}
+          />
 
-                                                  {/* Bottom Gradient Overlay for Stats - Padding adjusted for mobile */}
-                                                  <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-                                                            <div className="flex gap-6 md:gap-8 text-white">
-                                                                      <div>
-                                                                                <p className="text-[24px] md:text-[32px] font-bold leading-tight">50+</p>
-                                                                                <p className="text-[10px] md:text-[12px] opacity-80 uppercase tracking-widest mt-1 font-medium">Projects Done</p>
-                                                                      </div>
+          <ul className="mb-8 mt-8 flex flex-col gap-4 text-left md:mb-10">
+            {features.map((item) => (
+              <li key={item} className="clay-sm flex items-center gap-4 rounded-[24px] px-5 py-4">
+                <span className="clay-accent size-3 shrink-0 rounded-full" aria-hidden="true" />
+                <span className="text-[14px] font-semibold text-on-surface md:text-[16px]">{item}</span>
+              </li>
+            ))}
+          </ul>
 
-                                                                      {/* Vertical Divider */}
-                                                                      <div className="w-px h-10 md:h-12 bg-white/30 self-center"></div>
-
-                                                                      <div>
-                                                                                <p className="text-[24px] md:text-[32px] font-bold leading-tight">12+</p>
-                                                                                <p className="text-[10px] md:text-[12px] opacity-80 uppercase tracking-widest mt-1 font-medium">Tech Stack</p>
-                                                                      </div>
-                                                            </div>
-                                                  </div>
-                                        </div>
-
-                                        {/* Right Column: Text and CTA */}
-                                        <div className="text-center md:text-left">
-                                                  {/* Mobile 28px, Desktop 48px */}
-                                                  <h2 className="text-[28px] md:text-[48px] font-bold mb-4 md:mb-6 leading-[1.2] tracking-[-0.02em] text-on-surface text-shadow-md">
-                                                            Why Hire Me For Your Next <span className="text-primary-container underline decoration-primary/20 underline-offset-4">Project?</span>
-                                                  </h2>
-
-                                                  <p className="text-[14px] md:text-[18px] text-secondary mb-6 md:mb-8 leading-[1.6]">
-                                                            I don't just write code; I build business solutions. My focus is on creating scalable, performant architectures that grow with your user base using DRY principles and optimal HCI strategies.
-                                                  </p>
-
-                                                  {/* Features List */}
-                                                  <ul className="space-y-3 md:space-y-4 mb-8 md:mb-10 text-left">
-                                                            {[
-                                                                      "Fast-paced delivery with high precision",
-                                                                      "Excellent communication and team collaboration",
-                                                                      "Always up-to-date with latest React & Next.js standards"
-                                                            ].map((item, i) => (
-                                                                      <li key={i} className="flex items-center gap-3">
-                                                                                <CheckCircle
-                                                                                          size={20} // Shrink icon slightly for mobile, md size is inherited visually
-                                                                                          className="text-primary-container shrink-0 md:w-6 md:h-6"
-                                                                                          fill="currentColor"
-                                                                                          stroke="white"
-                                                                                          strokeWidth={1.5}
-                                                                                />
-                                                                                <span className="font-semibold text-on-surface text-[14px] md:text-[16px]">{item}</span>
-                                                                      </li>
-                                                            ))}
-                                                  </ul>
-
-                                                  {/* UNIFIED PRIMARY BUTTON - Full width on mobile */}
-                                                  <Button className="w-full sm:w-auto bg-primary-container text-on-primary-container rounded-full px-10 h-[56px] text-[16px] font-bold uppercase tracking-widest hover:scale-105 hover:bg-primary-container/90 transition-all shadow-md cursor-pointer mt-2">
-                                                            Hire Me Now
-                                                  </Button>
-                                        </div>
-                              </div>
-                    </section>
-          );
+          <Magnetic className="flex sm:inline-flex">
+            <Link href="/contact" className={buttonVariants({ size: "lg", className: "w-full sm:w-auto" })}>
+              Hire me now
+              <ArrowUpRight strokeWidth={2.2} className="transition-transform duration-300 group-hover/button:-translate-y-0.5 group-hover/button:translate-x-0.5" />
+            </Link>
+          </Magnetic>
+        </div>
+      </div>
+    </section>
+  );
 }

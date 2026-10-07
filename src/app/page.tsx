@@ -8,6 +8,7 @@ import AboutSection from "@/components/sections/home/AboutSection";
 import ProjectsSection from "@/components/sections/home/ProjectsSection";
 import CTASection from "@/components/generic/CTASection";
 import MarqueeSection from "@/components/sections/home/MarqueeSection";
+import Reveal from "@/components/shared/Reveal";
 
 export default function Home() {
   const hero = useHero();
@@ -18,12 +19,12 @@ export default function Home() {
   return (
     <main>
       <HeroSection data={hero} />
-      <SkillsSection skills={skills} />
-      <ExperienceSection experiences={experiences} />
-      <AboutSection />
-      <ProjectsSection projects={projects} />
-      <MarqueeSection />
-      <CTASection />
+      <Reveal><AboutSection /></Reveal>
+      <Reveal><SkillsSection skills={skills} /></Reveal>
+      <Reveal><ProjectsSection projects={projects} /></Reveal>
+      <Reveal><MarqueeSection /></Reveal>
+      <Reveal><ExperienceSection experiences={experiences} /></Reveal>
+      <Reveal><CTASection /></Reveal>
     </main>
   );
 }

@@ -10,7 +10,7 @@ export default function ProjectsPage() {
           const projectsPage = useProjectsPageData();
 
           return (
-                    <main className="min-h-screen bg-background relative overflow-hidden">
+                    <main className="clay-page relative min-h-screen overflow-hidden">
 
                               {/* Hero Section */}
                               <ProjectsHero data={projectsPage.hero} />

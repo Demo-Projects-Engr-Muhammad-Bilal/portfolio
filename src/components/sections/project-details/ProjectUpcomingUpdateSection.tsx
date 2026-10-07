@@ -5,33 +5,23 @@ interface ProjectUpcomingUpdateSectionProps {
   upcomingUpdate: UpcomingUpdate;
 }
 
-/**
- * Extracted verbatim from the "UPCOMING UPDATE (DARK CARD)" block of
- * app/projects/[id]/page.tsx.
- */
 export default function ProjectUpcomingUpdateSection({ upcomingUpdate }: ProjectUpcomingUpdateSectionProps) {
   return (
     <section className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] py-10 md:py-20">
-      <div className="bg-inverse-surface rounded-[24px] p-2 md:p-3 shadow-lg">
-        <div className="bg-white/5 rounded-[20px] overflow-hidden p-8 md:p-12 border border-white/10 relative flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+      <div className="clay-dark relative flex flex-col items-start justify-between gap-8 overflow-hidden rounded-[40px] p-8 md:flex-row md:items-center md:rounded-[56px] md:p-14">
+        <div className="max-w-2xl">
+          <span className="clay-sm clay-pill mb-4 inline-flex items-center gap-2 px-4 py-1.5 text-[12px] font-bold uppercase tracking-wider text-primary">
+            <Sparkles className="size-4" /> Upcoming Update
+          </span>
+          <h2 className="mb-4 font-display text-[28px] font-semibold leading-tight md:text-[40px]">
+            {upcomingUpdate.title}
+          </h2>
+          <p className="text-[15px] leading-relaxed text-secondary md:text-[16px]">{upcomingUpdate.description}</p>
+        </div>
 
-          <div className="max-w-2xl">
-            <span className="text-primary-container font-bold text-[12px] uppercase tracking-wider mb-3 flex items-center gap-2">
-              <Sparkles className="w-4 h-4" /> Upcoming Update
-            </span>
-            <h2 className="text-[28px] md:text-[40px] font-bold text-white mb-4 leading-tight">
-              {upcomingUpdate.title}
-            </h2>
-            <p className="text-white/70 text-[15px] md:text-[16px] leading-relaxed">
-              {upcomingUpdate.description}
-            </p>
-          </div>
-
-          {/* Decorative Element on the right */}
-          <div className="hidden md:flex w-24 h-24 rounded-full border-[8px] border-primary-container/20 items-center justify-center shrink-0">
-            <div className="w-12 h-12 bg-primary-container rounded-full animate-pulse"></div>
-          </div>
-
+        {/* Decorative clay orb */}
+        <div className="clay-sm hidden size-24 shrink-0 items-center justify-center rounded-full md:flex">
+          <span className="clay-blob size-12 animate-pulse rounded-full" style={{ ["--c" as string]: "var(--accent-fill)" }} />
         </div>
       </div>
     </section>

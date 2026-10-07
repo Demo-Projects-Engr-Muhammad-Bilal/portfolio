@@ -26,7 +26,7 @@ export default function ProjectDetail({ params }: { params: Promise<{ id: string
           }
 
           return (
-                    <main className="min-h-screen bg-background text-on-surface mt-20 md:mt-15">
+                    <main className="clay-page min-h-screen mt-20 md:mt-15">
 
                               {/* ================= HEADER & BREADCRUMB (LIGHT) ================= */}
                               <ProjectHeaderSection project={project} />

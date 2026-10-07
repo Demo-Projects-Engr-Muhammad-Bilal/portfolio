@@ -8,28 +8,25 @@ interface ProjectNotFoundProps {
   allProjects: Project[];
 }
 
-/**
- * Extracted verbatim from the inline 404 branch in app/projects/[id]/page.tsx.
- */
 export default function ProjectNotFound({ projectId, allProjects }: ProjectNotFoundProps) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen text-center gap-6 bg-background px-4">
-      <h1 className="text-[40px] font-extrabold text-primary">Hooo! Project Not Found 🚨</h1>
-      <div className="bg-surface-container-high p-6 rounded-2xl text-left max-w-lg w-full border border-error/20">
-        <p className="text-secondary text-[16px] mb-4">
+    <div className="clay-page flex min-h-screen flex-col items-center justify-center gap-6 px-4 text-center">
+      <h1 className="font-display text-[40px] font-semibold text-primary">Hooo! Project Not Found 🚨</h1>
+      <div className="clay w-full max-w-lg rounded-[32px] p-6 text-left md:p-8">
+        <p className="mb-4 text-[16px] text-secondary">
           Aapne jis URL par click kiya uski ID: <br />
-          <strong className="text-on-surface text-[20px] bg-white px-2 py-1 rounded">{projectId}</strong>
+          <strong className="clay-inset mt-2 inline-block rounded-[14px] px-3 py-1 text-[20px] text-on-surface">{projectId}</strong>
         </p>
-        <p className="font-bold text-primary-container mb-2">Lekin apki data file mein yeh IDs mojood hain:</p>
-        <ul className="list-disc pl-5 mb-4 space-y-1 text-secondary">
+        <p className="mb-2 font-bold text-primary">Lekin apki data file mein yeh IDs mojood hain:</p>
+        <ul className="mb-4 list-disc space-y-1 pl-5 text-secondary">
           {allProjects.map((p) => (
             <li key={p.id}>{p.id}</li>
           ))}
         </ul>
       </div>
       <Link href="/projects">
-        <Button className="bg-primary-container text-white px-8 rounded-full h-12">
-          <ArrowLeft className="w-4 h-4 mr-2" /> Go Back to Projects
+        <Button size="lg" className="px-8">
+          <ArrowLeft className="mr-2 size-4" /> Go Back to Projects
         </Button>
       </Link>
     </div>

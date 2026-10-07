@@ -42,22 +42,22 @@ export default function BlogPage() {
           });
 
           return (
-                    <main className="min-h-screen bg-surface text-on-background mt-20 md:mt-24 overflow-x-hidden">
+                    <main className="clay-page min-h-screen mt-20 md:mt-24 overflow-x-hidden">
 
                               <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
 
                                         {/* ================= PAGE HEADER (Mobile: Center, Desktop: Start) ================= */}
-                                        <section className="py-12 md:py-20 flex flex-col items-center md:items-start text-center md:text-left">
-                                                  <div className="flex flex-col md:flex-row items-center md:items-start gap-2 mb-4">
-                                                            <h1 className="text-[38px] md:text-[64px] font-extrabold leading-[1.1] tracking-[-0.02em] text-shadow-md">
-                                                                      My <span className="text-primary-container">Blogs</span>
-                                                            </h1>
-                                                            <Sparkles className="text-primary-container w-8 h-8 md:w-12 md:h-14 animate-pulse mt-1 md:mt-0" />
-                                                  </div>
-                                                  <p className="text-[14px] md:text-[18px] text-secondary max-w-2xl leading-[1.6]">
-                                                            Sharing what I learn building real-world projects — debugging stories, tutorials, and dev insights.
-                                                  </p>
-                                        </section>
+                                      <section className="flex flex-col items-center pt-32 pb-12 text-center md:items-start md:pt-40 md:pb-16 md:text-left">
+            <p className="clay-sm clay-pill mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 text-[12px] font-semibold text-foreground md:text-[13px]"> <span className="clay-accent size-2.5 rounded-full" aria-hidden="true" />
+              Blogs
+            </p>
+            <h1 className="font-display text-[44px] font-semibold leading-[1.02] tracking-[-0.01em] text-on-surface md:text-[84px]">
+              My <span className="text-primary">Blogs</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-[14px] leading-[1.7] text-secondary md:text-[17px]">
+              Sharing what I learn building real-world projects — debugging stories, tutorials, and dev insights.
+            </p>
+          </section>
 
                                         {/* ================= FEATURED POST (Blog of the Day) ================= */}
                                         <FeaturedPost post={featuredPost} />
@@ -79,25 +79,25 @@ export default function BlogPage() {
                                                                       ))}
                                                             </div>
                                                   ) : (
-                                                            <div className="flex flex-col items-center justify-center py-24 md:py-32 px-6 bg-surface-container-low rounded-[32px] border border-surface-variant/50 border-dashed">
+                                                            <div className="flex flex-col items-center justify-center py-24 md:py-32 px-6 clay-inset rounded-[40px]">
                                                                       {/* Icon for empty state */}
-                                                                      <div className="w-20 h-20 bg-surface-container rounded-full flex items-center justify-center mb-6">
+                                                                      <div className="clay-sm mb-6 flex size-20 items-center justify-center rounded-[28px]">
                                                                                 <Sparkles className="w-8 h-8 text-secondary/40" />
                                                                       </div>
 
-                                                                      <h3 className="text-[20px] md:text-[24px] font-bold text-on-surface mb-2">
+                                                                      <h3 className="font-display text-[20px] md:text-[24px] font-semibold text-on-surface mb-2">
                                                                                 No articles found yet
                                                                       </h3>
                                                                       <p className="text-secondary text-[15px] md:text-[16px] max-w-sm text-center leading-relaxed">
-                                                                                We're currently crafting new insights in this category. Stay tuned for upcoming posts!
+                                                                                We&apos;re currently crafting new insights in this category. Stay tuned for upcoming posts!
                                                                       </p>
 
                                                                       {/* Reset Filter Button */}
                                                                       {activeCategory !== "All" && (
                                                                                 <Button
-                                                                                          variant="ghost"
+                                                                                          variant="outline"
                                                                                           onClick={() => setActiveCategory("All")}
-                                                                                          className="mt-6 text-primary-container font-bold hover:bg-primary-container/10 rounded-full px-6"
+                                                                                          className="mt-6 px-6 text-primary"
                                                                                 >
                                                                                           View All Categories
                                                                                 </Button>

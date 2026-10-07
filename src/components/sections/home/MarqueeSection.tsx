@@ -1,45 +1,59 @@
-export default function MarqueeSection() {
-          return (
-                    <section className="py-20 md:py-30 relative overflow-hidden z-20 flex items-center justify-center">
+const stack = [
+  "PostgreSQL",
+  "Prisma",
+  "Tailwind CSS",
+  "TypeScript",
+  "Next.js",
+  "React",
+  "ASP.NET Core",
+  "Firebase",
+];
 
-                              {/* Inline style for guaranteed animation without messing with config files */}
-                              <style>{`
+const dots = ["var(--accent-fill)", "var(--tint-lavender)", "var(--tint-peach)", "var(--tint-sky)", "var(--tint-mint)"];
+
+export default function MarqueeSection() {
+  // Rendered twice so the -50% translate loops seamlessly
+  const row = (key: string) => (
+    <div key={key} className="flex shrink-0 items-center gap-5 pr-5 md:gap-7 md:pr-7" aria-hidden={key === "b" ? true : undefined}>
+      {stack.map((item, i) => (
+        <span
+          key={item}
+          className="clay-sm clay-pill flex items-center gap-3 px-6 py-3 font-display text-[18px] font-semibold text-on-surface md:px-8 md:py-4 md:text-[24px]"
+        >
+          <span
+            className="clay-blob size-3 rounded-full md:size-3.5"
+            style={{ ["--c" as string]: dots[i % dots.length] }}
+          />
+          {item}
+        </span>
+      ))}
+    </div>
+  );
+
+  return (
+    <section className="relative overflow-hidden py-8 md:py-12" aria-label="Tech stack">
+      <style>{`
         @keyframes marquee-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
           display: flex;
-          white-space: nowrap;
-          animation: marquee-scroll 20s linear infinite;
+          width: max-content;
+          animation: marquee-scroll 45s linear infinite;
+        }
+        .animate-marquee:hover { animation-play-state: paused; }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-marquee { animation: none; }
         }
       `}</style>
 
-                              {/* The Diagonal Strip */}
-              <div className="absolute transform -skew-y-[5deg] w-[150%] md:w-[120%] py-4 md:py-6 bg-primary-container shadow-2xl border-y border-white/10 flex items-center overflow-hidden">
-
-                                        {/* Animated Text Container */}
-                                        <div className="animate-marquee">
-                                                  {/* We repeat the text twice so the loop is seamless */}
-                                                  <div className="flex items-center">
-                                                            <span className="text-white text-[20px] md:text-[32px] font-extrabold uppercase tracking-widest italic mx-4">
-                                                                      POSTGRESQL ✦ PRISMA ✦ TAILWIND CSS ✦ TYPESCRIPT ✦ NEXT.JS ✦ REACT ✦ ASP.NET CORE ✦ FIREBASE ✦
-                                                            </span>
-                                                            <span className="text-white text-[20px] md:text-[32px] font-extrabold uppercase tracking-widest italic mx-4">
-                                                                      POSTGRESQL ✦ PRISMA ✦ TAILWIND CSS ✦ TYPESCRIPT ✦ NEXT.JS ✦ REACT ✦ ASP.NET CORE ✦ FIREBASE ✦
-                                                            </span>
-                                                  </div>
-                                                  <div className="flex items-center">
-                                                            <span className="text-white text-[20px] md:text-[32px] font-extrabold uppercase tracking-widest italic mx-4">
-                                                                      POSTGRESQL ✦ PRISMA ✦ TAILWIND CSS ✦ TYPESCRIPT ✦ NEXT.JS ✦ REACT ✦ ASP.NET CORE ✦ FIREBASE ✦
-                                                            </span>
-                                                            <span className="text-white text-[20px] md:text-[32px] font-extrabold uppercase tracking-widest italic mx-4">
-                                                                      POSTGRESQL ✦ PRISMA ✦ TAILWIND CSS ✦ TYPESCRIPT ✦ NEXT.JS ✦ REACT ✦ ASP.NET CORE ✦ FIREBASE ✦
-                                                            </span>
-                                                  </div>
-                                        </div>
-
-                              </div>
-                    </section>
-          );
+      <div className="clay-mask-x overflow-hidden py-6">
+        <div className="animate-marquee whitespace-nowrap">
+          {row("a")}
+          {row("b")}
+        </div>
+      </div>
+    </section>
+  );
 }

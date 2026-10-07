@@ -4,49 +4,48 @@ interface ProjectOverviewSectionProps {
   project: Project;
 }
 
-/**
- * Extracted verbatim from the "OVERVIEW & INFO GRID (DARK THEME)" block of
- * app/projects/[id]/page.tsx.
- */
+/** "The Goal" overview + role / duration / status card, on a dark clay panel. */
 export default function ProjectOverviewSection({ project }: ProjectOverviewSectionProps) {
   return (
-    <section className="bg-inverse-surface text-white py-10 md:py-20">
-      <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <section className="py-10 md:py-20">
+      <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
+        <div className="clay-dark relative grid grid-cols-1 gap-8 overflow-hidden rounded-[40px] p-8 md:rounded-[56px] md:p-14 lg:grid-cols-3">
+          <span aria-hidden="true" className="clay-blob clay-float pointer-events-none absolute -left-8 -top-8 size-24 rounded-full opacity-70" style={{ ["--c" as string]: "var(--tint-lavender)", animationDuration: "9s" }} />
 
-        <div className="lg:col-span-2 flex flex-col items-center md:items-start">
-          <div className="inline-block px-4 py-1 bg-primary-container/20 rounded-full text-primary-fixed-dim font-bold mb-4 text-[10px] md:text-[12px] uppercase tracking-wider">
-            Overview
+          <div className="relative flex flex-col items-center md:items-start lg:col-span-2">
+            <div className="clay-sm clay-pill mb-4 inline-block px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider text-primary md:text-[12px]">
+              Overview
+            </div>
+            <h2 className="mb-6 font-display text-[28px] font-semibold md:text-[48px]">
+              The <span className="text-primary">Goal</span>
+            </h2>
+            <p className="text-center text-[14px] leading-[1.7] text-secondary md:text-start md:text-[18px]">
+              {project.overview}
+            </p>
           </div>
-          <h2 className="text-[25px] md:text-[48px] font-bold mb-6">The <span className="text-primary-container">Goal</span>
-          </h2>
-          <p className="text-[13px] md:text-[18px] text-white/70 leading-[1.7] text-center md:text-start">
-            {project.overview}
-          </p>
-        </div>
 
-        {/* Detail Card - Darkened */}
-        <div className="bg-white/5 p-8 rounded-[24px] border border-white/10 shadow-lg">
-          <div className="space-y-6">
-            <div>
-              <h4 className="text-primary-container font-bold text-[10px] md:text-[12px] uppercase tracking-wider mb-2">Role</h4>
-              <p className="text-[18px] font-bold text-white">{project.role}</p>
-            </div>
-            <hr className="border-white/10" />
-            <div>
-              <h4 className="text-primary-container font-bold text-[10px] md:text-[12px] uppercase tracking-wider mb-2">Duration</h4>
-              <p className="text-[18px] font-bold text-white">{project.duration}</p>
-            </div>
-            <hr className="border-white/10" />
-            <div>
-              <h4 className="text-primary-container font-bold text-[10px] md:text-[12px] uppercase tracking-wider mb-2">Status</h4>
-              <div className="flex items-center gap-2">
-                <span className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
-                <p className="text-[18px] font-bold text-white">{project.status}</p>
+          <div className="clay-sm relative rounded-[32px] p-8">
+            <div className="space-y-6">
+              <div>
+                <h4 className="mb-2 text-[11px] font-bold uppercase tracking-wider text-primary md:text-[12px]">Role</h4>
+                <p className="text-[18px] font-bold text-foreground">{project.role}</p>
+              </div>
+              <div className="clay-inset h-2 rounded-full" aria-hidden="true" />
+              <div>
+                <h4 className="mb-2 text-[11px] font-bold uppercase tracking-wider text-primary md:text-[12px]">Duration</h4>
+                <p className="text-[18px] font-bold text-foreground">{project.duration}</p>
+              </div>
+              <div className="clay-inset h-2 rounded-full" aria-hidden="true" />
+              <div>
+                <h4 className="mb-2 text-[11px] font-bold uppercase tracking-wider text-primary md:text-[12px]">Status</h4>
+                <div className="flex items-center gap-2">
+                  <span className="size-3 animate-pulse rounded-full bg-green-500"></span>
+                  <p className="text-[18px] font-bold text-foreground">{project.status}</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </section>
   );

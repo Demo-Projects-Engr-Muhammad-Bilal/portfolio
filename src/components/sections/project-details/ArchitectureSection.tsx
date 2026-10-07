@@ -26,13 +26,13 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
 
           return (
                     <>
-                              <section className="bg-surface py-10 md:py-20 border-y border-surface-container-high">
+                              <section className="py-10 md:py-20">
                                         <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
 
                                                   {/* Section Header */}
                                                   <div className="text-center mb-10 md:mb-16">
-                                                            <h2 className="text-[28px] md:text-[48px] font-bold mb-4">
-                                                                      System <span className="text-primary-container">Architecture</span>
+                                                            <h2 className="font-display text-[28px] md:text-[48px] font-semibold text-on-surface mb-4">
+                                                                      System <span className="text-primary">Architecture</span>
                                                             </h2>
                                                             <p className="text-[14px] md:text-[18px] text-secondary max-w-2xl mx-auto">
                                                                       A high-level view of the data flow, tech stack integration, and infrastructure setup.
@@ -40,7 +40,7 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                   </div>
 
                                                   {/* Slider Main Container */}
-                                                  <div className="relative bg-surface border border-surface-container-high rounded-[24px] md:rounded-[32px] p-4 md:p-8 shadow-sm">
+                                                  <div className="clay-lg relative p-4 md:p-8">
 
                                                             {/* Slider Navigation Arrows (Floating on Desktop) */}
                                                             {diagrams.length > 1 && (
@@ -49,7 +49,7 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                                                           variant="outline"
                                                                                           size="icon"
                                                                                           onClick={handlePrev}
-                                                                                          className="rounded-full bg-surface/80 backdrop-blur-sm border-surface-container-high hover:bg-primary-container hover:text-white transition-all shadow-sm md:pointer-events-auto cursor-pointer"
+                                                                                          className="rounded-full md:pointer-events-auto cursor-pointer"
                                                                                           aria-label="Previous Slide"
                                                                                 >
                                                                                           <ChevronLeft className="w-5 h-5" />
@@ -58,7 +58,7 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                                                           variant="outline"
                                                                                           size="icon"
                                                                                           onClick={handleNext}
-                                                                                          className="rounded-full bg-surface/80 backdrop-blur-sm border-surface-container-high hover:bg-primary-container hover:text-white transition-all shadow-sm md:pointer-events-auto cursor-pointer"
+                                                                                          className="rounded-full md:pointer-events-auto cursor-pointer"
                                                                                           aria-label="Next Slide"
                                                                                 >
                                                                                           <ChevronRight className="w-5 h-5" />
@@ -71,10 +71,10 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
 
                                                                       {/* Active Diagram Title & Description */}
                                                                       <div className="max-w-3xl pr-20 md:pr-0 text-left">
-                                                                                <span className="text-[11px] font-bold text-primary-container uppercase tracking-widest block mb-1">
+                                                                                <span className="text-[11px] font-bold text-primary uppercase tracking-widest block mb-1">
                                                                                           Diagram {activeIndex + 1} of {diagrams.length}
                                                                                 </span>
-                                                                                <h3 className="text-[20px] md:text-[30px] font-bold text-on-surface mb-3 leading-tight">
+                                                                                <h3 className="font-display text-[20px] md:text-[30px] font-semibold text-on-surface mb-3 leading-tight">
                                                                                           {currentDiagram.title}
                                                                                 </h3>
                                                                                 <p className="text-[13px] md:text-[16px] text-secondary leading-relaxed">
@@ -86,14 +86,14 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                                       <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 md:gap-10 items-start">
 
                                                                                 {/* Active Diagram Bullet Points */}
-                                                                                <div className="bg-surface-container-lowest p-5 md:p-8 rounded-[16px] md:rounded-[24px] border border-surface-container-high shadow-sm text-left h-full">
-                                                                                          <h4 className="font-bold text-[12px] md:text-[13px] uppercase tracking-widest text-primary-container mb-4 md:mb-6">
+                                                                                <div className="clay h-full rounded-[28px] p-5 text-left md:p-8">
+                                                                                          <h4 className="font-bold text-[12px] md:text-[13px] uppercase tracking-widest text-primary mb-4 md:mb-6">
                                                                                                     Key Operations
                                                                                           </h4>
                                                                                           <ul className="space-y-3 md:space-y-4">
                                                                                                     {currentDiagram.points.map((point, idx) => (
                                                                                                               <li key={idx} className="flex items-start gap-2.5 md:gap-3">
-                                                                                                                        <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5 text-primary-container shrink-0 mt-0.5" />
+                                                                                                                        <CheckCircle2 className="size-4 md:size-5 text-primary shrink-0 mt-0.5" />
                                                                                                                         <span className="text-[13px] md:text-[15px] text-secondary leading-relaxed">
                                                                                                                                   {point}
                                                                                                                         </span>
@@ -104,7 +104,7 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
 
                                                                                 {/* Active Diagram Image Container (With Zoom functionality) */}
                                                                                 <div
-                                                                                          className="group relative w-full bg-white p-2 md:p-4 rounded-[16px] md:rounded-[24px] border border-surface-variant shadow-md overflow-hidden cursor-zoom-in transition-all hover:border-primary-container/40"
+                                                                                          className="clay-sm group relative w-full cursor-zoom-in overflow-hidden rounded-[28px] p-2 md:p-4"
                                                                                           onClick={() => setZoomedImage(currentDiagram.image)}
                                                                                 >
                                                                                           <Image
@@ -112,12 +112,12 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                                                                     alt={currentDiagram.title}
                                                                                                     width={1200}
                                                                                                     height={800}
-                                                                                                    className="w-full h-auto rounded-[10px] md:rounded-[14px] object-contain transition-transform duration-500 group-hover:scale-[1.01]"
+                                                                                                    className="w-full h-auto rounded-[20px] object-contain transition-transform duration-500 group-hover:scale-[1.01]"
                                                                                           />
 
                                                                                           {/* Magnifier Hover Overlay */}
-                                                                                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center rounded-[16px] md:rounded-[24px]">
-                                                                                                    <div className="bg-primary-container text-white px-5 py-2.5 rounded-full font-bold text-[13px] md:text-[15px] flex items-center gap-2 transform translate-y-3 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+                                                                                          <div className="absolute inset-0 flex items-center justify-center rounded-[28px] bg-black/30 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                                                                    <div className="clay-accent clay-pill flex translate-y-3 transform items-center gap-2 px-5 py-2.5 text-[13px] font-bold transition-all duration-300 group-hover:translate-y-0 md:text-[15px]">
                                                                                                               <ZoomIn className="w-4 h-4 md:w-5 md:h-5" /> Click to Zoom
                                                                                                     </div>
                                                                                           </div>
@@ -134,9 +134,9 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                                                                     key={idx}
                                                                                                     onClick={() => setActiveIndex(idx)}
                                                                                                     className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${activeIndex === idx
-                                                                                                                        ? "bg-primary-container w-6"
-                                                                                                                        : "bg-surface-variant w-2 hover:bg-primary-container/50"
-                                                                                                              }`}
+ ? "clay-accent w-6"
+ : "bg-surface-variant w-2 hover:bg-primary/50"
+ }`}
                                                                                                     aria-label={`Go to slide ${idx + 1}`}
                                                                                           />
                                                                                 ))}
@@ -155,7 +155,7 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                   onClick={() => setZoomedImage(null)}
                                         >
                                                   <button
-                                                            className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/10 hover:bg-primary-container text-white p-2.5 md:p-3 rounded-full transition-colors duration-300 z-50 cursor-pointer"
+                                                            className="absolute top-4 right-4 md:top-8 md:right-8 bg-white/15 hover:bg-[var(--accent-fill)] hover:text-[var(--on-accent-fill)] text-white p-2.5 md:p-3 rounded-full transition-colors duration-300 z-50 cursor-pointer"
                                                             onClick={() => setZoomedImage(null)}
                                                   >
                                                             <X className="w-5 h-5 md:w-7 md:h-7" />
@@ -166,7 +166,7 @@ export default function ArchitectureSection({ diagrams }: { diagrams: Architectu
                                                             alt="Zoomed Architecture Diagram"
                                                             width={1920}
                                                             height={1080}
-                                                            className="w-auto h-auto max-w-full max-h-[85vh] md:max-h-[90vh] object-contain rounded-[8px] md:rounded-[16px] shadow-2xl scale-100 animate-in zoom-in-95 duration-300"
+                                                            className="w-auto h-auto max-w-full max-h-[85vh] md:max-h-[90vh] object-contain rounded-[24px] scale-100 animate-in zoom-in-95 duration-300"
                                                             onClick={(e) => e.stopPropagation()}
                                                   />
                                         </div>

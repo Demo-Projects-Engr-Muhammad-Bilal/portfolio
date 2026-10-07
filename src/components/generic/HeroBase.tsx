@@ -2,54 +2,53 @@ import Image from "next/image";
 import { ReactNode } from "react";
 
 interface HeroBaseProps {
-          leftContent: ReactNode;
-          floatingBadge?: ReactNode;
-          imageUrl: string;
-          imageAlt: string;
-          heightClass?: string; // <-- Yeh naya prop add kiya hai parent control ke liye
+  leftContent: ReactNode;
+  floatingBadge?: ReactNode;
+  /** Optional decorative element centred behind the portrait (desktop only). */
+  decoration?: ReactNode;
+  imageUrl: string;
+  imageAlt: string;
+  heightClass?: string; // parent can override the section height
 }
 
-export default function HeroBase({ leftContent, floatingBadge, imageUrl, imageAlt, heightClass }: HeroBaseProps) {
+export default function HeroBase({ leftContent, floatingBadge, decoration, imageUrl, imageAlt, heightClass }: HeroBaseProps) {
+  const sectionHeight = heightClass || "min-h-[90vh] md:min-h-[860px]";
 
-          // Agar parent ne heightClass pass ki hai tou wo use hogi, warna default homepage wali
-          const sectionHeight = heightClass || "min-h-[90vh] md:min-h-[921px]";
+  return (
+    <section className={`relative flex items-center overflow-hidden pt-28 pb-16 md:pt-32 md:pb-24 ${sectionHeight}`}>
+      <div className="mx-auto grid w-full max-w-[var(--spacing-container-max)] grid-cols-1 items-center gap-12 px-[var(--spacing-margin-mobile)] md:grid-cols-2 md:px-[var(--spacing-margin-desktop)]">
+        {/* Left content */}
+        <div className="order-2 flex flex-col items-center text-center md:order-1 md:items-start md:text-left">
+          {leftContent}
+        </div>
 
-          return (
-                    <section className={`relative flex items-center pt-28 md:pt-12 pb-[var(--spacing-section-gap)] md:mt-5 overflow-hidden ${sectionHeight}`}>
-                              <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)] grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-12 items-center w-full">
+        {/* Right: framed portrait */}
+        <div className="relative order-1 flex justify-center md:order-2 md:justify-end">
+          <div className="clay-lg relative w-[260px] p-3 sm:w-[320px] md:w-[420px]">
+            {decoration && (
+              <div className="pointer-events-none absolute inset-0">
+                {decoration}
+              </div>
+            )}
+            <div className="relative z-[1] aspect-[4/5] w-full overflow-hidden rounded-[34px] bg-[var(--clay-inset-bg)] shadow-[inset_5px_5px_12px_var(--clay-inner-dark)]">
+              <Image
+                src={imageUrl}
+                alt={imageAlt}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 320px, 420px"
+              />
+            </div>
 
-                                        {/* Left Content Column */}
-                                        <div className="order-2 md:order-1 flex flex-col items-center text-center md:items-start md:text-left">
-                                                  {leftContent}
-                                        </div>
-
-                                        {/* Right Image Column */}
-                                        <div className="order-1 md:order-2 flex justify-center relative mt-4 md:mt-0">
-
-                                                  {/* Blurred Background Glow */}
-                                                  <div className="absolute inset-0 bg-primary-container rounded-full opacity-70 blur-3xl transform -translate-y-10 scale-110"></div>
-
-                                                  {/* Main Circular Image Box */}
-                                                  <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] md:w-[480px] md:h-[480px] rounded-full flex items-center justify-center overflow-hidden shadow-2xl md:ml-22 bg-primary-container backdrop-opacity-30">
-                                                            <Image
-                                                                      src={imageUrl}
-                                                                      alt={imageAlt}
-                                                                      fill
-                                                                      className="object-cover"
-                                                                      priority
-                                                                      sizes="(max-width: 768px) 280px, 480px"
-                                                            />
-                                                  </div>
-
-                                                  {/* Floating Badge */}
-                                                  {floatingBadge && (
-                                                            <div className="absolute -bottom-4 right-0 sm:-right-4 md:-bottom-6 md:right-12 z-10 transform scale-90 md:scale-100 origin-bottom-right">
-                                                                      {floatingBadge}
-                                                            </div>
-                                                  )}
-
-                                        </div>
-                              </div>
-                    </section>
-          );
+            {floatingBadge && (
+              <div className="absolute -bottom-6 -left-4 z-10 origin-bottom-left scale-90 md:-left-8 md:scale-100">
+                {floatingBadge}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

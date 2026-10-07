@@ -1,68 +1,64 @@
 import type { Experience } from "@/lib/types";
+import { Stagger } from "@/components/shared/Reveal";
 
 interface ExperienceBaseProps {
-          experiences: Experience[];
-          theme: "light" | "dark";
-          headerContent: React.ReactNode;
+  experiences: Experience[];
+  /** "dark" = sits on an always-dark panel (light text); "light" = normal theme text. */
+  theme: "light" | "dark";
+  headerContent: React.ReactNode;
 }
 
+/** Timeline: clay beads on a soft groove line, entries as clay cards. */
 export default function ExperienceBase({ experiences, theme, headerContent }: ExperienceBaseProps) {
-          // Theme ke mutabiq text colors set karna
-          const headingColor = theme === "dark" ? "text-white" : "text-on-surface";
-          const descColor = theme === "dark" ? "text-surface-variant" : "text-secondary";
+  const onPanel = theme === "dark";
+  const headingColor = onPanel ? "text-inverse-on-surface" : "text-on-surface";
+  const descColor = onPanel ? "text-inverse-on-surface/75" : "text-secondary";
+  const card = onPanel ? "clay-dark" : "clay";
 
-          return (
-                    <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
+  return (
+    <div className="mx-auto max-w-[var(--spacing-container-max)] px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
+      <div className="mb-12 md:mb-16">{headerContent}</div>
 
-                              {/* Dynamic Header Injected Here */}
-                              <div className="mb-10 md:mb-16">
-                                        {headerContent}
-                              </div>
+      <div className="relative">
+        {/* Soft groove line */}
+        <div
+          aria-hidden="true"
+          className="clay-inset absolute left-[11px] h-full w-2 -translate-x-1/2 rounded-full md:left-1/2"
+          style={onPanel ? { ["--clay-inset-bg" as string]: "rgba(10,14,32,0.4)", ["--clay-inner-dark" as string]: "rgba(0,0,0,0.45)", ["--clay-inner-light" as string]: "rgba(255,255,255,0.08)" } : undefined}
+        />
 
-                              {/* Timeline Container */}
-                              <div className="relative">
-                                        {/* Vertical Dashed Line */}
-                                        <div className="absolute left-[7px] md:left-1/2 transform md:-translate-x-1/2 h-full w-px border-l-2 border-dashed border-primary-container/30"></div>
+        <Stagger className="space-y-10 md:space-y-14" itemClassName="">
+          {experiences.map((exp, index) => (
+            <div key={exp.id} className="relative">
+              {/* Bead */}
+              <span
+                aria-label={`Time marker for ${exp.company} experience`}
+                role="img"
+                className="absolute left-[11px] top-8 z-10 size-6 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2"
+              >
+                <span className="clay-ping absolute inset-0 rounded-full bg-[var(--accent-fill)]/60" />
+                <span className="clay-accent relative block size-6 rounded-full" />
+              </span>
 
-                                        {/* Experience Entries */}
-                                        <div className="space-y-10 md:space-y-16">
-                                                  {experiences.map((exp, index) => (
-                                                            <div
-                                                                      key={exp.id}
-                                                                      className={`relative flex flex-col md:flex-row md:items-center ${index % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-                                                            >
-                                                                      {/* Text Content Column (Role, Company, Date) */}
-                                                                      <div className={`md:w-1/2 w-full pl-10 md:pl-0 ${index % 2 === 0 ? 'md:pr-[var(--spacing-margin-desktop)] md:text-right' : 'md:pl-[var(--spacing-margin-desktop)] md:text-left'}`}>
-                                                                                <h4 className={`font-semibold text-[18px] md:text-[20px] mb-1 leading-[1.4] ${headingColor}`}>
-                                                                                          {exp.role}
-                                                                                </h4>
-                                                                                <p className="text-primary font-bold text-[16px] md:text-[18px] mb-2 tracking-wide uppercase">
-                                                                                          {exp.company}
-                                                                                </p>
-                                                                                <p className={`text-[14px] md:text-[16px] leading-[1.5] ${descColor}`}>
-                                                                                          {exp.period}
-                                                                                </p>
-                                                                      </div>
-
-                                                                      {/* Timeline Dot */}
-                                                                      <div
-                                                                                className={`absolute left-[7px] md:left-1/2 transform -translate-x-1/2 mt-1.5 md:mt-0 w-4 h-4 bg-primary-container rounded-full cursor-pointer hover:scale-125 transition-transform duration-300 ${theme === "dark"
-                                                                                                    ? "border-4 border-inverse-surface ring-4 ring-primary-container/20"
-                                                                                                    : "shadow-[0_0_0_8px_rgba(255,107,53,0.15)]"
-                                                                                          }`}
-                                                                                aria-label={`Time marker for ${exp.company} experience`}
-                                                                      ></div>
-
-                                                                      {/* Description Column */}
-                                                                      <div className={`md:w-1/2 w-full pl-10 md:pl-0 mt-3 md:mt-0 ${index % 2 === 0 ? 'md:pl-[var(--spacing-margin-desktop)]' : 'md:pr-[var(--spacing-margin-desktop)] md:text-right'}`}>
-                                                                                <p className={`text-[14px] md:text-[16px] leading-[1.6] ${descColor}`}>
-                                                                                          {exp.description}
-                                                                                </p>
-                                                                      </div>
-                                                            </div>
-                                                  ))}
-                                        </div>
-                              </div>
-                    </div>
-          );
+              {/* Card (alternates sides on desktop) */}
+              <div className={`ml-12 md:w-[calc(50%-48px)] ${index % 2 !== 0 ? "md:ml-auto" : "md:ml-0 md:mr-auto"}`}>
+                <div className={`${card} clay-hover rounded-[32px] p-6 md:p-8`}>
+                  <p className={`clay-sm clay-pill mb-4 inline-flex px-4 py-1 text-[12px] font-semibold md:text-[13px] ${onPanel ? "text-[var(--accent-fill)]" : "text-primary"}`}>
+                    {exp.period}
+                  </p>
+                  <h4 className={`mb-1 font-display text-[20px] font-semibold leading-[1.3] md:text-[24px] ${headingColor}`}>
+                    {exp.role}
+                  </h4>
+                  <p className={`mb-3 text-[14px] font-semibold md:text-[15px] ${onPanel ? "text-[var(--accent-fill)]" : "text-primary"}`}>
+                    {exp.company}
+                  </p>
+                  <p className={`text-[14px] leading-[1.7] md:text-[15px] ${descColor}`}>{exp.description}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Stagger>
+      </div>
+    </div>
+  );
 }

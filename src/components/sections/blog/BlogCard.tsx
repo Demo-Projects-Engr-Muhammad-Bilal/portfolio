@@ -23,7 +23,7 @@ const SwiperNavButtons = () => {
                                                   e.stopPropagation();
                                                   swiper.slidePrev();
                                         }}
-                                        className="w-7 h-7 flex items-center justify-center bg-white/90 hover:bg-white text-primary-container rounded-full shadow-md pointer-events-auto transition-transform hover:scale-110"
+                                        className="clay-sm clay-pill pointer-events-auto flex size-8 items-center justify-center text-foreground transition-transform hover:scale-110"
                               >
                                         <ChevronLeft className="w-4 h-4 pr-0.5" />
                               </button>
@@ -33,7 +33,7 @@ const SwiperNavButtons = () => {
                                                   e.stopPropagation();
                                                   swiper.slideNext();
                                         }}
-                                        className="w-7 h-7 flex items-center justify-center bg-white/90 hover:bg-white text-primary-container rounded-full shadow-md pointer-events-auto transition-transform hover:scale-110"
+                                        className="clay-sm clay-pill pointer-events-auto flex size-8 items-center justify-center text-foreground transition-transform hover:scale-110"
                               >
                                         <ChevronRight className="w-4 h-4 pl-0.5" />
                               </button>
@@ -47,11 +47,11 @@ export default function BlogCard({ post }: { post: BlogPost }) {
           return (
                     <Link
                               href={`/blog/${post.id}`}
-                              className="flex flex-col bg-surface-container-low rounded-2xl overflow-hidden cursor-pointer group hover:-translate-y-1.5 transition-all duration-300 shadow-sm hover:shadow-2xl border border-transparent hover:border-surface-variant relative"
+                              className="clay clay-hover group relative flex h-full cursor-pointer flex-col rounded-[32px] p-3"
                     >
                               {/* ================= IMAGE / SWIPER AREA ================= */}
                               {/* Default blue dots ko override karne ke liye `!bg-primary-container` (important flag) use kiya hai */}
-                              <div className="relative h-48 sm:h-52 md:h-56 overflow-hidden [&_.swiper-pagination-bullet]:!bg-white/80 [&_.swiper-pagination-bullet-active]:!bg-primary-container [&_.swiper-pagination-bullet-active]:!w-5 [&_.swiper-pagination-bullet-active]:!rounded-md [&_.swiper-pagination-bullet]:!transition-all [&_.swiper-pagination-bullet]:!duration-300 [&_.swiper-pagination]:!bottom-2">
+                              <div className="clay-frame relative h-48 overflow-hidden rounded-[26px] sm:h-52 md:h-56 [&_.swiper-pagination-bullet]:!bg-white/80 [&_.swiper-pagination-bullet-active]:!bg-primary-container [&_.swiper-pagination-bullet-active]:!w-5 [&_.swiper-pagination-bullet-active]:!rounded-md [&_.swiper-pagination-bullet]:!transition-all [&_.swiper-pagination-bullet]:!duration-300 [&_.swiper-pagination]:!bottom-2">
 
                                         {imageList.length > 1 ? (
                                                   <Swiper
@@ -83,20 +83,20 @@ export default function BlogCard({ post }: { post: BlogPost }) {
                                                   />
                                         )}
 
-                                        <span className="absolute top-3 left-3 z-10 bg-primary-container text-on-primary px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider shadow-md pointer-events-none">
+                                        <span className="clay-accent clay-pill pointer-events-none absolute left-3 top-3 z-10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-wider">
                                                   {post.category}
                                         </span>
 
-                                        <div className="absolute z-10 bottom-3 right-3 w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-lg translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
-                                                  <ArrowUpRight className="w-5 h-5 text-primary-container" />
+                                        <div className="clay-accent absolute bottom-3 right-3 z-10 flex size-10 translate-y-12 items-center justify-center rounded-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none">
+                                                  <ArrowUpRight className="size-5" />
                                         </div>
                               </div>
 
-                              <div className="p-5 md:p-6 flex flex-col flex-grow text-left bg-surface-container-low relative z-10">
+                              <div className="relative z-10 flex flex-grow flex-col p-5 text-left md:p-6">
                                         <p className="text-[11px] text-secondary mb-2 uppercase tracking-widest font-bold">
                                                   By {post.author} • {post.date}
                                         </p>
-                                        <h3 className="text-[20px] md:text-[22px] font-bold mb-2 group-hover:text-primary-container transition-colors leading-snug text-on-surface line-clamp-2">
+                                        <h3 className="font-display text-[20px] md:text-[22px] font-semibold mb-2 group-hover:text-primary transition-colors leading-snug text-on-surface line-clamp-2">
                                                   {post.title}
                                         </h3>
                                         <p className="text-secondary text-[13px] md:text-[14px] leading-relaxed line-clamp-3">

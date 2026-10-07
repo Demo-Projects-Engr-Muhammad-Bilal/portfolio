@@ -9,7 +9,7 @@ export default function ContactPage() {
           const contactPage = useContactPageData();
 
           return (
-                    <main className="min-h-screen bg-background mt-36">
+                    <main className="clay-page min-h-screen mt-36">
                               {/* Hero Section */}
                               <ContactHero data={contactPage.hero} />
 

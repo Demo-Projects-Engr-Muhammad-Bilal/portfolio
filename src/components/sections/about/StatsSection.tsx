@@ -57,28 +57,22 @@ interface StatsSectionProps {
 }
 
 export default function StatsSection({ stats }: StatsSectionProps) {
-          return (
-                    <section className="bg-white py-12 md:py-20 border-y border-surface-container overflow-hidden">
-                              <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
-                                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-12 gap-x-8">
-                                                  {stats.map((stat, index) => (
-                                                            <div
-                                                                      key={index}
-                                                                      className={`text-center flex flex-col justify-center ${index !== 3 ? "lg:border-r border-surface-container" : ""
-                                                                                } ${index % 2 === 0 ? "border-r border-surface-container lg:border-none" : ""}`}
-                                                            >
-                                                                      {/* Font size bara kiya aur drop-shadow apply kiya */}
-                                                                      <div className="text-[48px] md:text-[64px] font-extrabold text-primary-container mb-2 leading-none drop-shadow-md">
-                                                                                <AnimatedCounter value={stat.number} />
-                                                                      </div>
-
-                                                                      <div className="text-[12px] md:text-[14px] font-semibold text-secondary uppercase tracking-widest mt-2">
-                                                                                {stat.label}
-                                                                      </div>
-                                                            </div>
-                                                  ))}
-                                        </div>
-                              </div>
-                    </section>
-          );
+  return (
+    <section className="overflow-hidden py-12 md:py-20">
+      <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
+        <div className="grid grid-cols-2 gap-5 md:gap-8 lg:grid-cols-4">
+          {stats.map((stat, index) => (
+            <div key={index} className="clay flex flex-col justify-center rounded-[32px] px-4 py-8 text-center md:py-10">
+              <div className="mb-2 font-display text-[44px] font-semibold leading-none text-primary md:text-[60px]">
+                <AnimatedCounter value={stat.number} />
+              </div>
+              <div className="mt-2 text-[12px] font-semibold uppercase tracking-widest text-secondary md:text-[13px]">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

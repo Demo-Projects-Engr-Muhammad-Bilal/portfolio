@@ -7,9 +7,7 @@ import { Send, Loader2, CheckCircle2 } from "lucide-react";
 
 /**
  * Shared "Have a Project Idea? Let's Discuss" call-to-action block, used at
- * the bottom of Home, About, Projects, and Project Detail pages. This is an
- * exact extraction of the original home-about/ContactSection markup — no
- * className, copy, or structural changes.
+ * the bottom of Home, About, Projects, and Project Detail pages. Styled as a dark clay panel.
  */
 export default function CTASection() {
           const [email, setEmail] = useState("");
@@ -39,72 +37,68 @@ export default function CTASection() {
           };
 
           return (
-                    <section className="py-16 md:py-[var(--spacing-section-gap)]" id="contact">
-                              <div className="max-w-[var(--spacing-container-max)] mx-auto px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
+    <section className="py-16 md:py-[var(--spacing-section-gap)]" id="contact">
+      <div className="mx-auto max-w-[var(--spacing-container-max)] px-[var(--spacing-margin-mobile)] md:px-[var(--spacing-margin-desktop)]">
+        <div className="clay-dark relative overflow-hidden rounded-[40px] p-8 text-center sm:p-10 md:rounded-[56px] md:p-20">
+          <span aria-hidden="true" className="clay-blob clay-float pointer-events-none absolute -left-8 -top-8 size-28 rounded-full opacity-80" style={{ ["--c" as string]: "var(--accent-fill)", animationDuration: "8s" }} />
+          <span aria-hidden="true" className="clay-blob clay-float pointer-events-none absolute -bottom-10 -right-6 size-32 rounded-[36px] opacity-80" style={{ ["--c" as string]: "var(--tint-lavender)", animationDuration: "10s", animationDelay: "1.5s" }} />
+          <div className="relative z-10 mx-auto max-w-3xl">
+            <p className="clay-sm clay-pill mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 text-[12px] font-semibold text-inverse-on-surface md:text-[13px]">
+              <span className="clay-accent size-2.5 rounded-full" aria-hidden="true" />
+              Contact
+            </p>
 
-                                        {/* Mobile p-8, Desktop p-20 */}
-                                        <div className="bg-inverse-surface rounded-[32px] md:rounded-[40px] p-8 sm:p-10 md:p-20 text-center relative overflow-hidden">
+            <h2 className="mb-6 font-display text-[36px] font-semibold leading-[1.08] text-inverse-on-surface md:mb-8 md:text-[68px]">
+              Have a project idea? <br /> Let&apos;s <span className="text-[var(--accent-fill)]">discuss.</span>
+            </h2>
 
-                                                  {/* Background Glow */}
-                                                  <div className="absolute top-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-primary-container/20 blur-[80px] md:blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+            <p className="mx-auto mb-8 max-w-xl text-[15px] leading-[1.7] text-inverse-on-surface/80 md:mb-12 md:text-[17px]">
+              I&apos;m currently available for freelance work and full-time opportunities. Send me a message and let&apos;s turn your vision into reality.
+            </p>
 
-                                                  <div className="relative z-10 max-w-2xl mx-auto">
-                                                            {/* Mobile text 32px, Desktop 48px/56px */}
-                                                            <h2 className="text-[32px] md:text-[56px] font-bold text-surface mb-6 md:mb-8 text-shadow-md leading-[1.2]">
-                                                                      Have a Project Idea? <br /> Let's <span className="text-primary-container">Discuss</span>
-                                                            </h2>
+            <form className="mx-auto flex max-w-lg flex-col gap-2" onSubmit={handleSubmit}>
+              <div className="flex w-full flex-col gap-4 md:flex-row">
+                <Input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled={isLoading || isSuccess}
+                  className="h-14 w-full px-6 text-[14px] text-inverse-on-surface placeholder:text-inverse-on-surface/60 md:text-[15px]"
+                  placeholder="Your email address"
+                  type="email"
+                  required
+                />
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={isLoading || isSuccess}
+                  variant={isSuccess ? "secondary" : "default"}
+                  className={`h-14 w-full gap-2 px-8 sm:w-auto ${isSuccess ? "cursor-default text-[var(--accent-fill)]" : ""}`}
+                >
+                  {isLoading ? (
+                    <Loader2 className="size-5 animate-spin" />
+                  ) : isSuccess ? (
+                    <>
+                      Sent
+                      <CheckCircle2 className="ml-1 size-4 shrink-0" />
+                    </>
+                  ) : (
+                    <>
+                      Send
+                      <Send className="ml-1 size-4 shrink-0" />
+                    </>
+                  )}
+                </Button>
+              </div>
 
-                                                            {/* Mobile text 16px, Desktop 18px */}
-                                                            <p className="text-surface-variant text-[16px] md:text-[18px] mb-8 md:mb-12 leading-[1.6]">
-                                                                      I'm currently available for freelance work and full-time opportunities. Send me a message and let's turn your vision into reality.
-                                                            </p>
-
-                                                            {/* Form - Flex-col on mobile, Flex-row on desktop */}
-                                                            <form className="relative group max-w-lg mx-auto flex flex-col gap-2" onSubmit={handleSubmit}>
-                                                                      <div className="flex flex-col md:flex-row gap-4 w-full">
-                                                                                <Input
-                                                                                          value={email}
-                                                                                          onChange={(e) => setEmail(e.target.value)}
-                                                                                          disabled={isLoading || isSuccess}
-                                                                                          className="w-full bg-white/10 border-white/20 rounded-full px-6 md:px-8 py-6 md:py-7 text-surface placeholder:text-surface/40 focus-visible:ring-primary-container text-[14px] md:text-[16px]"
-                                                                                          placeholder="Your email address"
-                                                                                          type="email"
-                                                                                          required
-                                                                                />
-                                                                                <Button
-                                                                                          type="submit"
-                                                                                          disabled={isLoading || isSuccess}
-                                                                                          className={`font-bold px-10 h-[56px] rounded-full transition-all shadow-lg flex items-center justify-center gap-2 w-full sm:w-auto border-0 ${isSuccess
-                                                                                                              ? "bg-green-600 hover:bg-green-600 text-white cursor-default scale-100"
-                                                                                                              : "bg-primary-container text-white hover:scale-105 active:scale-95 cursor-pointer"
-                                                                                                    }`}
-                                                                                >
-                                                                                          {isLoading ? (
-                                                                                                    <Loader2 className="w-5 h-5 animate-spin" />
-                                                                                          ) : isSuccess ? (
-                                                                                                    <>
-                                                                                                              Sent
-                                                                                                              <CheckCircle2 className="w-4 h-4 ml-1 shrink-0" />
-                                                                                                    </>
-                                                                                          ) : (
-                                                                                                    <>
-                                                                                                              Send
-                                                                                                              <Send className="w-4 h-4 ml-1 shrink-0" />
-                                                                                                    </>
-                                                                                          )}
-                                                                                </Button>
-                                                                      </div>
-
-                                                                      {/* Success Message Text */}
-                                                                      {isSuccess && (
-                                                                                <span className="text-[13px] text-green-400 font-medium px-4 text-center md:text-left animate-in fade-in slide-in-from-top-1 mt-1">
-                                                                                          Thanks for reaching out! We'll be in touch shortly.
-                                                                                </span>
-                                                                      )}
-                                                            </form>
-                                                  </div>
-                                        </div>
-                              </div>
-                    </section>
-          );
+              {isSuccess && (
+                <span className="mt-2 px-1 text-center text-[13px] font-semibold text-[var(--accent-fill)] animate-in fade-in slide-in-from-top-1">
+                  Thanks for reaching out! We&apos;ll be in touch shortly.
+                </span>
+              )}
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

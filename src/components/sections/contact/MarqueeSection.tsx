@@ -1,45 +1,55 @@
 interface MarqueeProps {
-          text?: string; // Optional prop banaya hai
+  text?: string; // Optional: items separated by "✦" or "•"
 }
 
-export default function MarqueeSection({ text }: MarqueeProps) {
-          // Agar prop pass nahi hoga, tou default homepage wala text use hoga
-          const displayText = text || "POSTGRESQL ✦ PRISMA ✦ TAILWIND CSS ✦ TYPESCRIPT ✦ NEXT.JS ✦ REACT ✦ ASP.NET CORE ✦ FIREBASE ✦ ";
+const dots = ["var(--accent-fill)", "var(--tint-lavender)", "var(--tint-peach)", "var(--tint-sky)", "var(--tint-mint)"];
 
-          return (
-                    <section className="py-20 md:py-32 relative overflow-hidden z-20 flex items-center justify-center">
-                              <style>{`
+export default function MarqueeSection({ text }: MarqueeProps) {
+  const source =
+    text || "POSTGRESQL ✦ PRISMA ✦ TAILWIND CSS ✦ TYPESCRIPT ✦ NEXT.JS ✦ REACT ✦ ASP.NET CORE ✦ FIREBASE";
+  const items = source
+    .split(/[✦•]/)
+    .map((t) => t.trim())
+    .filter(Boolean);
+
+  // Rendered twice so the -50% translate loops seamlessly
+  const row = (key: string) => (
+    <div key={key} className="flex shrink-0 items-center gap-5 pr-5 md:gap-7 md:pr-7" aria-hidden={key === "b" ? true : undefined}>
+      {items.map((item, i) => (
+        <span
+          key={`${item}-${i}`}
+          className="clay-sm clay-pill flex items-center gap-3 px-6 py-3 font-display text-[18px] font-semibold text-on-surface md:px-8 md:py-4 md:text-[24px]"
+        >
+          <span className="clay-blob size-3 rounded-full" style={{ ["--c" as string]: dots[i % dots.length] }} />
+          {item}
+        </span>
+      ))}
+    </div>
+  );
+
+  return (
+    <section className="relative my-12 overflow-hidden py-6 md:my-20 md:py-10" aria-label="Highlights">
+      <style>{`
         @keyframes marquee-scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
         }
         .animate-marquee {
           display: flex;
-          white-space: nowrap;
-          animation: marquee-scroll 70s linear infinite;
+          width: max-content;
+          animation: marquee-scroll 60s linear infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .animate-marquee { animation: none; }
         }
       `}</style>
 
-                              <div className="absolute transform -skew-y-[3deg] md:-skew-y-[5deg] w-[150%] md:w-[120%] py-4 md:py-6 bg-primary-container shadow-2xl border-y border-white/10 flex items-center overflow-hidden">
-                                        <div className="animate-marquee">
-                                                  <div className="flex items-center">
-                                                            <span className="text-white text-[14px] md:text-[25px] font-light tracking-widest mx-4">
-                                                                      {displayText}
-                                                            </span>
-                                                            <span className="text-white text-[14px] md:text-[25px] uppercase font-light  tracking-widest mx-4">
-                                                                      {displayText}
-                                                            </span>
-                                                  </div>
-                                                  <div className="flex items-center">
-                                                            <span className="text-white text-[14px] md:text-[25px] uppercase font-light  tracking-widest mx-4">
-                                                                      {displayText}
-                                                            </span>
-                                                            <span className="text-white text-[14px] md:text-[25px] uppercase font-light  tracking-widest mx-4">
-                                                                      {displayText}
-                                                            </span>
-                                                  </div>
-                                        </div>
-                              </div>
-                    </section>
-          );
+      <div className="clay-mask-x overflow-hidden py-6">
+        <div className="animate-marquee whitespace-nowrap">
+          {row("a")}
+          {row("b")}
+        </div>
+      </div>
+    </section>
+  );
 }

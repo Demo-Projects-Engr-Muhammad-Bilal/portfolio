@@ -1,57 +1,64 @@
 import type { ReactNode } from "react";
 
 interface SectionHeaderProps {
-  /** Heading content — pass JSX directly so callers can include <span> highlights, <br/>, icons, etc. exactly as before. */
+  /** Heading content - pass JSX so callers can include <span> highlights, <br/>, etc. */
   title: ReactNode;
   /** Optional supporting paragraph shown under the title. */
   description?: ReactNode;
-  /** "center" (default) matches SkillsSection-style centered headers; "left" matches ProjectsSection-style headers that go left on desktop. */
+  /** Optional label, rendered as a small clay chip above the title. */
+  label?: string;
+  /** "center" (default) or "left" (left-aligned on desktop). */
   align?: "center" | "left";
-  /** Text color theme — "light" for dark/inverse-surface backgrounds, "dark" (default) for light backgrounds. */
+  /** "light" = light text for always-dark panels, "dark" (default) = normal theme text. */
   theme?: "light" | "dark";
-  /** Show the small underline divider bar beneath the title (default true). */
+  /** Show the short clay accent bar under the title (default true). */
   showDivider?: boolean;
-  /** Extra classes appended to the divider bar, for byte-for-byte parity with a specific original call site. */
+  /** Extra classes appended to the divider bar. */
   dividerClassName?: string;
-  /** Extra classes for the outer wrapper, e.g. spacing overrides per call site. */
+  /** Extra classes for the outer wrapper. */
   className?: string;
 }
 
 /**
- * Shared section header: "text-[28px] md:text-[48px] ... text-shadow-md" title
- * + optional underline divider bar, used across ProjectsSection, SkillsSection,
- * and similar sections. Markup/classes are an exact extraction of the
- * previously duplicated inline JSX — no visual change.
+ * Shared section header: clay chip label, rounded display title,
+ * a soft accent bar and muted description.
  */
 export default function SectionHeader({
   title,
   description,
+  label,
   align = "center",
   theme = "dark",
   showDivider = true,
   dividerClassName = "",
   className = "",
 }: SectionHeaderProps) {
-  const titleColor = theme === "light" ? "text-surface" : "text-on-surface";
-  const descColor = theme === "light" ? "text-surface-variant" : "text-secondary";
+  const light = theme === "light";
+  const titleColor = light ? "text-inverse-on-surface" : "text-on-surface";
+  const descColor = light ? "text-inverse-on-surface/75" : "text-secondary";
+  const chipColor = light ? "text-inverse-on-surface" : "text-foreground";
   const alignClasses =
     align === "left"
-      ? "text-center md:text-left"
+      ? "flex flex-col items-center text-center md:items-start md:text-left"
       : "flex flex-col items-center text-center";
   const dividerAlign = align === "left" ? "mx-auto md:mx-0" : "mx-auto";
 
   return (
     <div className={`${alignClasses} ${className}`}>
-      <h2 className={`text-[28px] md:text-[48px] leading-[1.2] tracking-[-0.02em] font-bold mb-3 md:mb-4 text-shadow-md ${titleColor}`}>
+      {label && (
+        <p className={`clay-sm clay-pill mb-5 inline-flex items-center gap-2.5 px-4 py-1.5 text-[12px] font-semibold md:text-[13px] ${chipColor}`}>
+          <span className="clay-accent size-2.5 rounded-full" aria-hidden="true" />
+          {label}
+        </p>
+      )}
+      <h2 className={`font-display text-[34px] font-semibold leading-[1.1] tracking-[-0.01em] md:text-[56px] ${titleColor}`}>
         {title}
       </h2>
       {showDivider && (
-        <div className={`w-16 md:w-24 h-1 bg-primary-container rounded-full ${dividerAlign} ${dividerClassName}`}></div>
+        <div className={`clay-accent mt-5 h-2 w-16 rounded-full md:w-24 ${dividerAlign} ${dividerClassName}`} />
       )}
       {description && (
-        <p className={`text-[14px] md:text-[18px] leading-[1.6] mt-3 md:mt-4 ${descColor}`}>
-          {description}
-        </p>
+        <p className={`mt-5 max-w-2xl text-[15px] leading-[1.7] md:text-[17px] ${descColor}`}>{description}</p>
       )}
     </div>
   );

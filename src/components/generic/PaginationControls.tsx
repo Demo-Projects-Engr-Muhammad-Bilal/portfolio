@@ -1,5 +1,4 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 interface PaginationControlsProps {
   currentPage: number;
@@ -7,20 +6,15 @@ interface PaginationControlsProps {
   onPrev: () => void;
   onNext: () => void;
   onPageSelect: (page: number) => void;
-  /**
-   * "icon-arrows" matches the original BlogPage style (round icon-only
-   * prev/next buttons with numbered circles).
-   * "text-buttons" matches the original ProjectsDisplay style (text
-   * "Previous"/"Next" buttons with numbered circular page buttons).
-   */
+  /** "icon-arrows" (Blog) or "text-buttons" (Projects). Same sharp style, different prev/next labels + spacing. */
   variant: "icon-arrows" | "text-buttons";
 }
 
-/**
- * Extracted from the duplicated pagination markup in BlogPage and
- * ProjectsDisplay. Each variant reproduces its source's exact classes —
- * nothing is unified or restyled.
- */
+const box =
+  "clay-pill inline-flex h-10 min-w-10 cursor-pointer items-center justify-center font-mono text-[12px] uppercase tracking-wider outline-none focus-visible:ring-[3px] focus-visible:ring-ring/60 disabled:cursor-not-allowed disabled:opacity-40 md:h-12 md:min-w-12";
+const idle = "clay-sm clay-hover text-secondary hover:text-foreground";
+const active = "clay-accent clay-pressed";
+
 export default function PaginationControls({
   currentPage,
   totalPages,
@@ -31,84 +25,47 @@ export default function PaginationControls({
 }: PaginationControlsProps) {
   if (totalPages <= 1) return null;
 
-  if (variant === "icon-arrows") {
-    return (
-      <section className="flex justify-center items-center space-x-2 mb-20 md:mb-32">
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={onPrev}
-          disabled={currentPage === 1}
-          className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant flex items-center justify-center hover:bg-surface-container transition-colors text-secondary cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          <ChevronLeft className="w-5 h-5" />
-        </Button>
+  const icons = variant === "icon-arrows";
+  const wrapper = icons
+    ? "mb-20 flex items-center justify-center gap-2 md:mb-32"
+    : "mt-10 flex items-center justify-center gap-2 md:mt-16";
 
-        {[...Array(totalPages)].map((_, idx) => {
-          const pageNum = idx + 1;
-          return (
-            <Button
-              key={pageNum}
-              variant={currentPage === pageNum ? "default" : "outline"}
-              onClick={() => onPageSelect(pageNum)}
-              className={`w-10 h-10 md:w-12 md:h-12 rounded-full font-bold text-[14px] transition-all cursor-pointer ${currentPage === pageNum
-                ? "bg-primary-container hover:bg-primary-container/90 text-white shadow-md border-0"
-                : "border border-surface-variant text-secondary hover:bg-surface-container"
-                }`}
-            >
-              {pageNum}
-            </Button>
-          );
-        })}
-
-        <Button
-          variant="outline"
-          size="icon"
-          onClick={onNext}
-          disabled={currentPage === totalPages}
-          className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-surface-variant flex items-center justify-center hover:bg-surface-container transition-colors text-secondary cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
-        >
-          <ChevronRight className="w-5 h-5" />
-        </Button>
-      </section>
-    );
-  }
-
-  // variant === "text-buttons"
   return (
-    <div className="flex justify-center items-center gap-1.5 md:gap-2 mt-10 md:mt-16">
-      <Button
-        variant="outline"
+    <nav aria-label="Pagination" className={wrapper}>
+      <button
+        type="button"
         onClick={onPrev}
         disabled={currentPage === 1}
-        className="rounded-full h-9 md:h-12 px-4 md:px-6 font-semibold text-[12px] md:text-[14px]"
+        aria-label="Previous page"
+        className={`${box} ${idle} ${icons ? "" : "px-4 md:px-6"}`}
       >
-        Previous
-      </Button>
+        {icons ? <ChevronLeft className="size-4" /> : "Previous"}
+      </button>
 
-      <div className="flex gap-1 md:gap-2 px-1 md:px-4">
-        {Array.from({ length: totalPages }).map((_, idx) => (
+      {Array.from({ length: totalPages }).map((_, idx) => {
+        const page = idx + 1;
+        return (
           <button
-            key={idx}
-            onClick={() => onPageSelect(idx + 1)}
-            className={`w-8 h-8 md:w-10 md:h-10 rounded-full font-bold text-[12px] md:text-[14px] transition-colors ${currentPage === idx + 1
-              ? "bg-primary-container text-white"
-              : "text-secondary hover:bg-surface-variant"
-              }`}
+            key={page}
+            type="button"
+            onClick={() => onPageSelect(page)}
+            aria-current={currentPage === page ? "page" : undefined}
+            className={`${box} ${currentPage === page ? active : idle}`}
           >
-            {idx + 1}
+            {page}
           </button>
-        ))}
-      </div>
+        );
+      })}
 
-      <Button
-        variant="outline"
+      <button
+        type="button"
         onClick={onNext}
         disabled={currentPage === totalPages}
-        className="rounded-full h-9 md:h-12 px-4 md:px-6 font-semibold text-[12px] md:text-[14px]"
+        aria-label="Next page"
+        className={`${box} ${idle} ${icons ? "" : "px-4 md:px-6"}`}
       >
-        Next
-      </Button>
-    </div>
+        {icons ? <ChevronRight className="size-4" /> : "Next"}
+      </button>
+    </nav>
   );
 }
